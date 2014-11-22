@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
@@ -45,6 +46,21 @@ public class ListModuleTest {
         System.out.println("Sum: " + (end - start) / 10e9);
 
         assertThat(sum, is(1000));
+    }
+
+    @Test
+    public void should_foldLeft_listModule_structure() throws Exception {
+        ListModule.List<Integer> list = new ListModule.NonEmptyList<>(3, new ListModule.NonEmptyList<>(
+                2, new ListModule.NonEmptyList<>(
+                1, new ListModule.EmptyList<Integer>())));
+        int sum = list.foldLeft(0, new helper.Function<Integer, Integer>() {
+            @Override
+            public Integer apply(Integer seed, Integer item) {
+                return seed + item;
+            }
+        });
+
+        assertThat(sum, is(6));
     }
 
     private Function<Integer, Integer> sum() {

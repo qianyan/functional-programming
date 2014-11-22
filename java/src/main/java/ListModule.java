@@ -57,7 +57,7 @@ public class ListModule {
 
         @Override
         public <T1> T1 foldLeft(T1 seed, Function<T1, T> calculus) {
-            return null;
+            return seed;
         }
     }
 }
