@@ -36,3 +36,9 @@ cpr ("Contents of the Prefix part of Register number"), and
 ctr ("Contents of the Tag part of Register number"),
 ```
 
+### sum from a to b
+1. sum(a, b) => a + sum(a+1, b)
+
+```
+(+ a (f (+ a 1) b)) 
+```
