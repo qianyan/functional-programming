@@ -11,3 +11,7 @@
   (list (car x)
         (caddr x)
         (cadr x)))
+
+(define six_over_three '(/ 6 3)) ;=>2
+(define switch (swap-2-3 six_over_three));=>1/2
+
