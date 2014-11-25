@@ -36,9 +36,19 @@ cpr ("Contents of the Prefix part of Register number"), and
 ctr ("Contents of the Tag part of Register number"),
 ```
 
-### sum from a to b
+### example
 1. sum(a, b) => a + sum(a+1, b)
 
 ```
 (+ a (f (+ a 1) b)) 
 ```
+
+2. definition of data structure
+
+* list
+```
+(list 1 2 3)
+'(1 2 3)
+(quote (1 2 3))
+```
+
