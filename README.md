@@ -51,4 +51,8 @@ ctr ("Contents of the Tag part of Register number"),
 '(1 2 3)
 (quote (1 2 3))
 ```
-
+* macro
+```
+(define-syntax 
+  (syntax-rules () ...))
+```
