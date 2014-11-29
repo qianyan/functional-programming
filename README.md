@@ -4,8 +4,8 @@ functional-programming
 functional programming based on various language.
 
 ## Java 
-* foldLeft, reduce
-* recursive data structure
+- [x] foldLeft, reduce
+- [x] recursive data structure
 
 ## scheme
 ### S-Expression definition
