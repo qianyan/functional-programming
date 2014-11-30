@@ -12,6 +12,8 @@
         (caddr x)
         (cadr x)))
 
-(define six_over_three '(/ 6 3)) ;=>2
-(define switch (swap-2-3 six_over_three));=>1/2
+(define six_over_three '(/ 6 3)) 
+(eval six_over_three) ;=> 2
+(define switch (swap-2-3 six_over_three))
+(eval switch) ;=>1/2
 
