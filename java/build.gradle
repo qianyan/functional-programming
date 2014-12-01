@@ -6,7 +6,5 @@ repositories {
 }
 
 dependencies {
-    compile 'com.google.guava:guava:17.0'
-
     testCompile 'junit:junit:4.11'
 }

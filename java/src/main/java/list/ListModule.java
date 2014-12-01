@@ -1,4 +1,6 @@
-import helper.Function;
+package list;
+
+import helper.Union;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -19,7 +21,7 @@ public class ListModule {
         public T head();
         public List<T> tail();
         public boolean isEmpty();
-        public <T1> T1 foldLeft(T1 seed, Function<T1, T> calculus);
+        public <T1> T1 foldLeft(T1 seed, Union<T1, T> calculus);
     }
 
     public static final class NonEmptyList<T> implements List<T> {
@@ -47,7 +49,7 @@ public class ListModule {
         }
 
         @Override
-        public <T1> T1 foldLeft(T1 seed, Function<T1, T> calculus) {
+        public <T1> T1 foldLeft(T1 seed, Union<T1, T> calculus) {
             return tail().foldLeft(calculus.apply(seed, head()), calculus);
         }
     }
@@ -70,7 +72,7 @@ public class ListModule {
         }
 
         @Override
-        public <T1> T1 foldLeft(T1 seed, Function<T1, T> calculus) {
+        public <T1> T1 foldLeft(T1 seed, Union<T1, T> calculus) {
             return seed;
         }
     }
