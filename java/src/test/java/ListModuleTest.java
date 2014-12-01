@@ -50,9 +50,7 @@ public class ListModuleTest {
 
     @Test
     public void should_foldLeft_listModule_structure() throws Exception {
-        ListModule.List<Integer> list = new ListModule.NonEmptyList<>(3, new ListModule.NonEmptyList<>(
-                2, new ListModule.NonEmptyList<>(
-                1, new ListModule.EmptyList<Integer>())));
+        ListModule.List<Integer> list = ListModule.of(1, 2, 3, 4, 5);
         int sum = list.foldLeft(0, new helper.Function<Integer, Integer>() {
             @Override
             public Integer apply(Integer seed, Integer item) {
@@ -60,7 +58,7 @@ public class ListModuleTest {
             }
         });
 
-        assertThat(sum, is(6));
+        assertThat(sum, is(15));
     }
 
     private Function<Integer, Integer> sum() {

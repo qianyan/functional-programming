@@ -1,6 +1,20 @@
 import helper.Function;
 
+import java.util.Arrays;
+import java.util.Iterator;
+
 public class ListModule {
+    public static <T> List<T> of(T... iterables) {
+        return of(Arrays.asList(iterables).iterator());
+    }
+
+    private static <T> List<T> of(Iterator<T> it) {
+        if (!it.hasNext()) {
+            return new EmptyList<>();
+        }
+        return new NonEmptyList<>(it.next(), of(it));
+    }
+
     public static interface List<T> {
         public T head();
         public List<T> tail();

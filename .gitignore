@@ -3,7 +3,7 @@
 gradle
 build
 out
-.ipr
-.iml
-.iws
+*.ipr
+*.iml
+*.iws
 
