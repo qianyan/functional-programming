@@ -1,10 +1,11 @@
 package guawa;
 
 import com.google.common.base.Function;
-import com.google.common.collect.AbstractSequentialIterator;
-import com.google.common.collect.Iterables;
+import com.google.common.collect.*;
 
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 import static com.google.common.collect.Iterables.limit;
 
@@ -44,5 +45,18 @@ public class Guawa {
                 return input * input * input;
             }
         });
+    }
+
+    public static <T> List<T> fold(T... list) {
+        List<T> aList = Lists.newArrayList();
+        PeekingIterator<T> iterator = Iterators.peekingIterator(Arrays.asList(list).iterator());
+        while (iterator.hasNext()) {
+            T current = iterator.next();
+            while (iterator.hasNext() && iterator.peek().equals(current)) {
+                iterator.next();
+            }
+            aList.add(current);
+        }
+        return aList;
     }
 }
