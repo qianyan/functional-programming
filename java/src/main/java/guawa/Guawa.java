@@ -10,6 +10,13 @@ import java.util.List;
 import static com.google.common.collect.Iterables.limit;
 
 public class Guawa {
+    public static <T> T[] _a(T... args) {
+        return args;
+    }
+
+    public static <T> List<T> _l(T... args) {
+        return Arrays.asList(args);
+    }
     public static int sumCubes(int floor, int ceil) {
         int sum = 0;
         Iterable<Integer> cubes = limit(cube(from(floor)), ceil);
@@ -47,7 +54,7 @@ public class Guawa {
         });
     }
 
-    public static <T> List<T> fold(T... list) {
+    public static <T> List<T> uniq(T... list) {
         List<T> aList = Lists.newArrayList();
         PeekingIterator<T> iterator = Iterators.peekingIterator(Arrays.asList(list).iterator());
         while (iterator.hasNext()) {

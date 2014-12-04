@@ -2,10 +2,7 @@ package guawa;
 
 import org.junit.Test;
 
-import java.util.Arrays;
-
-import static guawa.Guawa.fold;
-import static guawa.Guawa.sumCubes;
+import static guawa.Guawa.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -17,6 +14,6 @@ public class GuawaTest {
 
     @Test
     public void remove_continuous_duplicated_elements_of_list() throws Exception {
-        assertThat(fold(1, 2, 2, 3, 4, 4, 5), is(Arrays.asList(1, 2, 3, 4, 5)));
+        assertThat(uniq(1, 2, 2, 3, 4, 4, 5), is(_l(1, 2, 3, 4, 5)));
     }
 }
