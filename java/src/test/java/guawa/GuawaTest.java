@@ -16,4 +16,13 @@ public class GuawaTest {
     public void remove_continuous_duplicated_elements_of_list() throws Exception {
         assertThat(uniq(1, 2, 2, 3, 4, 4, 5), is(_l(1, 2, 3, 4, 5)));
     }
+
+    @Test
+    public void flatten_iterables() throws Exception {
+        assertThat(flatten(_l(
+                _l(1, 2),
+                _l(3, 4),
+                _l(5)
+        )), is(_l(1, 2, 3, 4, 5)));
+    }
 }

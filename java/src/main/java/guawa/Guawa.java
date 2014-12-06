@@ -8,6 +8,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import static com.google.common.collect.Iterables.limit;
+import static com.google.common.collect.Lists.newArrayList;
 
 public class Guawa {
     public static <T> T[] _a(T... args) {
@@ -55,7 +56,7 @@ public class Guawa {
     }
 
     public static <T> List<T> uniq(T... list) {
-        List<T> aList = Lists.newArrayList();
+        List<T> aList = newArrayList();
         PeekingIterator<T> iterator = Iterators.peekingIterator(Arrays.asList(list).iterator());
         while (iterator.hasNext()) {
             T current = iterator.next();
@@ -65,5 +66,9 @@ public class Guawa {
             aList.add(current);
         }
         return aList;
+    }
+
+    public static <T> List<T> flatten(Iterable<List<T>> lists) {
+        return newArrayList(Iterables.concat(lists));
     }
 }
