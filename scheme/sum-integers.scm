@@ -22,3 +22,9 @@
 
 (define (sum-integers-alias a b)
   (sum identity a inc b))
+
+;intergral
+(define (intergral f a b dx)
+  (define (add-dx x) (+ x dx))
+  (* (sum f (+ a (/ dx 2.0)) add-dx b) dx))
+
