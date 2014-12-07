@@ -16,3 +16,9 @@
 
 (define (sum-cubes a b) 
   (sum cube a inc b))
+
+;=> always equals itself
+(define (identity x) x)
+
+(define (sum-integers-alias a b)
+  (sum identity a inc b))
