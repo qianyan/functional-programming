@@ -21,7 +21,7 @@ public class ListModule {
         public T head();
         public List<T> tail();
         public boolean isEmpty();
-        public <T1> T1 foldLeft(T1 seed, Union<T1, T> calculus);
+        public T foldLeft(T seed, Union<T> calculus);
     }
 
     public static final class NonEmptyList<T> implements List<T> {
@@ -49,7 +49,7 @@ public class ListModule {
         }
 
         @Override
-        public <T1> T1 foldLeft(T1 seed, Union<T1, T> calculus) {
+        public T foldLeft(T seed, Union<T> calculus) {
             return tail().foldLeft(calculus.apply(seed, head()), calculus);
         }
     }
@@ -72,7 +72,7 @@ public class ListModule {
         }
 
         @Override
-        public <T1> T1 foldLeft(T1 seed, Union<T1, T> calculus) {
+        public T foldLeft(T seed, Union<T> calculus) {
             return seed;
         }
     }

@@ -32,8 +32,8 @@ public class FavaTest {
         assertThat(foldLeft(0, preLists, sum()), is(1000));
     }
 
-    private Union<Integer, Integer> sum() {
-        return new Union<Integer, Integer>() {
+    private Union<Integer> sum() {
+        return new Union<Integer>() {
             @Override
             public Integer apply(Integer seed, Integer item) {
                 return seed + item;

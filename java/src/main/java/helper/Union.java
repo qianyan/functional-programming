@@ -1,5 +1,5 @@
 package helper;
 
-public interface Union<T1, F> {
-    public T1 apply(T1 seed, F item);
+public interface Union<T> {
+    public T apply(T seed, T item);
 }
