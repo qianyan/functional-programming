@@ -6,6 +6,7 @@ import com.google.common.collect.*;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import static com.google.common.collect.Iterables.limit;
 import static com.google.common.collect.Lists.newArrayList;
@@ -18,6 +19,11 @@ public class Guawa {
     public static <T> List<T> _l(T... args) {
         return Arrays.asList(args);
     }
+
+    public static <T> Set<T> _s(T... args) {
+        return Sets.newHashSet(args);
+    }
+
     public static int sumCubes(int floor, int ceil) {
         int sum = 0;
         Iterable<Integer> cubes = limit(cube(from(floor)), ceil);
@@ -70,5 +76,19 @@ public class Guawa {
 
     public static <T> List<T> flatten(Iterable<List<T>> lists) {
         return newArrayList(Iterables.concat(lists));
+    }
+
+    public static <T> Integer count(List<T> list, T obj) {
+        return Iterables.frequency(list, obj);
+    }
+
+    public static <T> Set<T> xSet(Set<T> removeFrom, Set<T> retained) {
+        Iterables.retainAll(removeFrom, retained);
+        return removeFrom;
+    }
+
+    public static <T> Set<T> nSet(Set<T> removeFrom, Set<T> removed) {
+        Iterables.removeAll(removeFrom, removed);
+        return removeFrom;
     }
 }
