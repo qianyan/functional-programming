@@ -37,8 +37,18 @@ public class GuawaTest {
     }
 
     @Test
+    public void intersection_set_with_excluded_elements() throws Exception {
+        assertThat(xSet(_s(1, 2, 3, 4), _s(1, 2, 5)), is(_s(1, 2)));
+    }
+
+    @Test
     public void supplementary_set() throws Exception {
         assertThat(nSet(_s(1, 2, 3, 4), _s(1, 2)), is(_s(3, 4)));
+    }
+
+    @Test
+    public void supplementary_set_with_excluded_elements() throws Exception {
+        assertThat(nSet(_s(1, 2, 3, 4), _s(1, 2, 5)), is(_s(3, 4)));
     }
 
 }
