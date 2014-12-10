@@ -51,4 +51,23 @@ public class GuawaTest {
         assertThat(nSet(_s(1, 2, 3, 4), _s(1, 2, 5)), is(_s(3, 4)));
     }
 
+    @Test
+    public void union_() throws Exception {
+        assertThat(uSet(_s(1, 2, 3, 4), _s(2, 3, 6)), is(_s(1, 2, 3, 4, 6)));
+    }
+
+    @Test
+    public void reverse_() throws Exception {
+        assertThat(reverse(_l(1, 2, 3, 4, 5)), is(_l(5, 4, 3, 2, 1)));
+    }
+
+    @Test
+    public void difference() throws Exception {
+        assertThat(diff(_s(1, 2, 3), _s(2, 4, 5)), is(_s(1, 3)));
+    }
+
+    @Test
+    public void symmetric_difference() throws Exception {
+        assertThat(sdiff(_s(1, 2, 3), _s(2, 3, 5)), is(_s(1, 5)));
+    }
 }

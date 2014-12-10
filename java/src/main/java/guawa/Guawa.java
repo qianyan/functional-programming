@@ -91,4 +91,20 @@ public class Guawa {
         Iterables.removeAll(removeFrom, removed);
         return removeFrom;
     }
+
+    public static <T> List<T> reverse(List<T> list) {
+        return Lists.reverse(list);
+    }
+
+    public static <T> Set<T> uSet(Set<T> set0, Set<T> set1) {
+        return Sets.union(set0, set1);
+    }
+
+    public static <T> Set<T> diff(Set<T> set0, Set<T> set1) {
+        return Sets.difference(set0, set1);
+    }
+
+    public static <T> Set<T> sdiff(Set<T> set0, Set<T> set1) {
+        return Sets.symmetricDifference(set0, set1);
+    }
 }
