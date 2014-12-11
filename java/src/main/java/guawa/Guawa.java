@@ -1,6 +1,7 @@
 package guawa;
 
 import com.google.common.base.Function;
+import com.google.common.base.Joiner;
 import com.google.common.collect.*;
 
 import java.util.Arrays;
@@ -106,5 +107,13 @@ public class Guawa {
 
     public static <T> Set<T> sdiff(Set<T> set0, Set<T> set1) {
         return Sets.symmetricDifference(set0, set1);
+    }
+
+    public static <T> String mkString(Iterable<T> args, String seperator) {
+        return Joiner.on(seperator).join(args);
+    }
+
+    public static <T> String mkString(List<T> args, String start, String seperator, String end) {
+        return start + mkString(args, seperator) + end;
     }
 }

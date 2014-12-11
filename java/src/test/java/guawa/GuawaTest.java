@@ -70,4 +70,14 @@ public class GuawaTest {
     public void symmetric_difference() throws Exception {
         assertThat(sdiff(_s(1, 2, 3), _s(2, 3, 5)), is(_s(1, 5)));
     }
+
+    @Test
+    public void makeString() throws Exception {
+        assertThat(mkString(_l("one", "two", "three", "four"), ":"), is("one:two:three:four"));
+    }
+
+    @Test
+    public void makeClosedString() throws Exception {
+        assertThat(Guawa.mkString(_l("one", "two", "three", "four"), "{", ":", "}"), is("{one:two:three:four}"));
+    }
 }
