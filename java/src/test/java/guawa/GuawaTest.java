@@ -78,6 +78,12 @@ public class GuawaTest {
 
     @Test
     public void makeClosedString() throws Exception {
-        assertThat(Guawa.mkString(_l("one", "two", "three", "four"), "{", ":", "}"), is("{one:two:three:four}"));
+        assertThat(mkString(_l("one", "two", "three", "four"), "{", ":", "}"), is("{one:two:three:four}"));
+    }
+
+    @Test
+    public void compact_() throws Exception {
+        assertThat(compact(_a(1, null, 2, 3, 4)), is(_a(1, 2, 3, 4)));
+        assertThat(compact(_a("1", null, "2", "3", "4")), is(_a("1", "2", "3", "4")));
     }
 }

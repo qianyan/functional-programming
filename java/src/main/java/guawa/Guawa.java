@@ -2,6 +2,7 @@ package guawa;
 
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
+import com.google.common.base.Predicate;
 import com.google.common.collect.*;
 
 import java.util.Arrays;
@@ -9,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import static com.google.common.collect.FluentIterable.of;
 import static com.google.common.collect.Iterables.limit;
 import static com.google.common.collect.Lists.newArrayList;
 
@@ -115,5 +117,14 @@ public class Guawa {
 
     public static <T> String mkString(List<T> args, String start, String seperator, String end) {
         return start + mkString(args, seperator) + end;
+    }
+
+    public static <T> T[] compact(T[] arr) {
+        return of(arr).filter(new Predicate<T>() {
+            @Override
+            public boolean apply(T a) {
+                return a != null;
+            }
+        }).toArray((Class<T>) Object.class);
     }
 }
