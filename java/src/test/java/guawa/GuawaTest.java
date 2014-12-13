@@ -86,4 +86,15 @@ public class GuawaTest {
         assertThat(compact(_a(1, null, 2, 3, 4)), is(_a(1, 2, 3, 4)));
         assertThat(compact(_a("1", null, "2", "3", "4")), is(_a("1", "2", "3", "4")));
     }
+
+    @Test
+    public void findWhere_for_string() throws Exception {
+        assertThat(findWhere(_l("1", "22", "333"), _m("length", 2)), is("22"));
+    }
+
+    @Test
+    public void findWhere_for_an_obj() throws Exception {
+        assertThat(findWhere(_l(new Person("A", "female"), new Person("B", "male"), new Person("B", "female")),
+                _m("name", "B")), is(new Person("B", "male")));
+    }
 }

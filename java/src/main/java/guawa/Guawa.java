@@ -5,10 +5,9 @@ import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
 import com.google.common.collect.*;
 
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.util.*;
 
 import static com.google.common.collect.FluentIterable.of;
 import static com.google.common.collect.Iterables.limit;
@@ -126,5 +125,39 @@ public class Guawa {
                 return a != null;
             }
         }).toArray((Class<T>) Object.class);
+    }
+
+    public static <T> Map<String, T> _m(String key, T value) {
+        HashMap<String, T> map = new HashMap<>();
+        map.put(key, value);
+        return map;
+    }
+
+    public static <T, F> T findWhere(List<T> objs, Map<String, F> prop) {
+        Map.Entry<String, F> first = prop.entrySet().iterator().next();
+        for (T obj : objs) {
+            try {
+                Object returnValue = obj.getClass().getMethod(first.getKey()).invoke(obj);
+                if (returnValue.equals(first.getValue())) {
+                    return obj;
+                }
+            } catch (NoSuchMethodException e) {
+                try {
+                    Field field = obj.getClass().getDeclaredField(first.getKey());
+                    field.setAccessible(true);
+                    Object fieldValue = field.get(obj);
+
+                    if (fieldValue.equals(first.getValue())) {
+                        return obj;
+                    }
+                } catch (NoSuchFieldException | IllegalAccessException e1) {
+                    e1.printStackTrace();
+                }
+            } catch (InvocationTargetException | IllegalAccessException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
     }
 }
