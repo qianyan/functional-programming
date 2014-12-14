@@ -97,4 +97,9 @@ public class GuawaTest {
         assertThat(findWhere(_l(new Person("A", "female"), new Person("B", "male"), new Person("B", "female")),
                 _m("name", "B")), is(new Person("B", "male")));
     }
+
+    @Test
+    public void without_() throws Exception {
+        assertThat(Guawa.without(_a(1, 2, 3, 4, 2), 1, 3, 3 ,4), is(_a(2, 2)));
+    }
 }

@@ -160,4 +160,15 @@ public class Guawa {
 
         return null;
     }
+
+    public static <T> T[] without(T[] args, T... without) {
+        Set<T> set = _s(without);
+        List<T> list = new ArrayList<>();
+        for (T arg : args) {
+            if (!set.contains(arg)) {
+                list.add(arg);
+            }
+        }
+        return (T[])list.toArray();
+    }
 }
