@@ -182,6 +182,6 @@ public class Guawa {
     }
 
     public static <T> int lastIndexOf(T[] args, final T arg) {
-        return reverse(_l(args)).lastIndexOf(arg);
+        return _l(args).lastIndexOf(arg);
     }
 }
