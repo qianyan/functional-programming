@@ -171,4 +171,17 @@ public class Guawa {
         }
         return (T[])list.toArray();
     }
+
+    public static <T> int indexOf(T[] args, final T arg) {
+        return Iterables.indexOf(_l(args), new Predicate<T>() {
+            @Override
+            public boolean apply(T input) {
+                return input.equals(arg) ;
+            }
+        });
+    }
+
+    public static <T> int lastIndexOf(T[] args, final T arg) {
+        return reverse(_l(args)).lastIndexOf(arg);
+    }
 }

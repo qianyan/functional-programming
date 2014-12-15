@@ -102,4 +102,14 @@ public class GuawaTest {
     public void without_() throws Exception {
         assertThat(Guawa.without(_a(1, 2, 3, 4, 2), 1, 3, 3 ,4), is(_a(2, 2)));
     }
+
+    @Test
+    public void index_of() throws Exception {
+        assertThat(Guawa.indexOf(_a(1, 2, 5, 3, 4), 5), is(2));
+    }
+
+    @Test
+    public void last_index_of() throws Exception {
+        assertThat(Guawa.lastIndexOf(_a(1, 2, 5, 3, 4), 5), is(2));
+    }
 }
