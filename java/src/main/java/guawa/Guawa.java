@@ -202,6 +202,10 @@ public class Guawa {
     }
 
     public static Integer[] generator(int count) {
-        return newArrayList(limit(from(0), count)).toArray(new Integer[count]);
+        return generator(0, count);
+    }
+
+    public static Integer[] generator(int from, int count) {
+        return newArrayList(limit(from(from), count)).toArray(new Integer[count]);
     }
 }

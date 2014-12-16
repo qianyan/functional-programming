@@ -122,6 +122,7 @@ public class GuawaTest {
     @Test
     public void sample() throws Exception {
         assertThat(Guawa.sample(_a(1, 3, 4, 5, 10, 20), 5).length, is(5));
+        assertThat(Guawa.sample(Guawa.generator(30), 10).length, is(10));
     }
 
     @Test
@@ -132,5 +133,10 @@ public class GuawaTest {
     @Test
     public void generator() throws Exception {
         assertThat(Guawa.generator(5).length, is(5));
+    }
+
+    @Test
+    public void generator_with_from() throws Exception {
+        assertThat(Guawa.generator(5, 5).length, is(5));
     }
 }
