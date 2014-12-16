@@ -110,6 +110,6 @@ public class GuawaTest {
 
     @Test
     public void last_index_of() throws Exception {
-        assertThat(Guawa.lastIndexOf(_a(1, 2, 5, 3, 4), 3), is(3));
+        assertThat(Guawa.lastIndexOf(_a(1, 2, 5, 3, 3, 4), 3), is(4));
     }
 }
