@@ -36,7 +36,7 @@ public class Guawa {
         return sum;
     }
 
-    private static Iterable<Integer> from(final int start) {
+    private static Iterable<Integer> from(final int start, final int... step) {
         return new Iterable<Integer>() {
             @Override
             public Iterator<Integer> iterator() {
@@ -48,7 +48,7 @@ public class Guawa {
                             return null;
                         }
 
-                        return ++i;
+                        return i = (step.length > 0) ? i + step[0] : i + 1;
                     }
                 };
             }
@@ -201,11 +201,18 @@ public class Guawa {
         return Arrays.copyOf(args, args.length - lastCount);
     }
 
-    public static Integer[] generator(int count) {
-        return generator(0, count);
+    public static Integer[] range(int stop) {
+        return range(0, stop);
     }
 
-    public static Integer[] generator(int from, int count) {
-        return newArrayList(limit(from(from), count)).toArray(new Integer[count]);
+    public static Integer[] range(int start, int stop) {
+        return range(start, stop, 1);
+    }
+
+    public static Integer[] range(int start, int stop, int step) {
+        int len = stop - start;
+        checkArgument(step > 0 && step <= len, "step is not allowed");
+        int count = len / step;
+        return newArrayList(limit(from(start, step), count)).toArray(new Integer[count]);
     }
 }
