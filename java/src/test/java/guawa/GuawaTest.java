@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static guawa.Guawa.*;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.assertThat;
 
 public class GuawaTest {
@@ -111,5 +112,15 @@ public class GuawaTest {
     @Test
     public void last_index_of() throws Exception {
         assertThat(Guawa.lastIndexOf(_a(1, 2, 5, 3, 3, 4), 3), is(4));
+    }
+
+    @Test
+    public void shuffle() throws Exception {
+        assertThat(Guawa.shuffle(_a(1, 2, 3, 4, 5)), is(not(_a(1, 2, 3, 4, 5))));
+    }
+
+    @Test
+    public void sample() throws Exception {
+        assertThat(Guawa.sample(_a(1, 3, 4, 5, 10, 20), 5).length, is(5));
     }
 }

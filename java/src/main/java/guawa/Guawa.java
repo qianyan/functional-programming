@@ -184,4 +184,14 @@ public class Guawa {
     public static <T> int lastIndexOf(T[] args, final T arg) {
         return _l(args).lastIndexOf(arg);
     }
+
+    public static <T> T[] shuffle(T[] args) {
+        List<T> list = _l(args);
+        Collections.shuffle(list);
+        return (T[])list.toArray();
+    }
+
+    public static <T> T[] sample(T[] args, int count) {
+        return Arrays.copyOf(shuffle(args), count);
+    }
 }
