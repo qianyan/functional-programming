@@ -128,4 +128,9 @@ public class GuawaTest {
     public void initial() throws Exception {
         assertThat(Guawa.initial(_a(1, 2, 3, 5, 6), 3), is(_a(1, 2)));
     }
+
+    @Test
+    public void generator() throws Exception {
+        assertThat(Guawa.generator(5).length, is(5));
+    }
 }

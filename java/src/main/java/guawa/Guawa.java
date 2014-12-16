@@ -200,4 +200,8 @@ public class Guawa {
         checkArgument(lastCount >= 0 && lastCount <= args.length, "last counts is not allowed");
         return Arrays.copyOf(args, args.length - lastCount);
     }
+
+    public static Integer[] generator(int count) {
+        return newArrayList(limit(from(0), count)).toArray(new Integer[count]);
+    }
 }
