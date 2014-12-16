@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.util.*;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.collect.FluentIterable.of;
 import static com.google.common.collect.Iterables.limit;
 import static com.google.common.collect.Lists.newArrayList;
@@ -193,5 +194,10 @@ public class Guawa {
 
     public static <T> T[] sample(T[] args, int count) {
         return Arrays.copyOf(shuffle(args), count);
+    }
+
+    public static <T> T[] initial(T[] args, int lastCount) {
+        checkArgument(lastCount >= 0 && lastCount <= args.length, "last counts is not allowed");
+        return Arrays.copyOf(args, args.length - lastCount);
     }
 }

@@ -123,4 +123,9 @@ public class GuawaTest {
     public void sample() throws Exception {
         assertThat(Guawa.sample(_a(1, 3, 4, 5, 10, 20), 5).length, is(5));
     }
+
+    @Test
+    public void initial() throws Exception {
+        assertThat(Guawa.initial(_a(1, 2, 3, 5, 6), 3), is(_a(1, 2)));
+    }
 }
