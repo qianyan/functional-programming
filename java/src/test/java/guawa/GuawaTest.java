@@ -144,4 +144,10 @@ public class GuawaTest {
     public void range_with_step() throws Exception {
         assertThat(Guawa.range(5, 30, 5).length, is(5));
     }
+
+    @Test
+    public void sorted_index() throws Exception {
+        assertThat(Guawa.sortedIndex(_a(1, 2, 5, 6), 5), is(2));
+        assertThat(Guawa.sortedIndex(_a(1, 2, 5, 6), 4), is(2));
+    }
 }

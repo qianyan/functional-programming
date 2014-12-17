@@ -215,4 +215,9 @@ public class Guawa {
         int count = len / step;
         return newArrayList(limit(from(start, step), count)).toArray(new Integer[count]);
     }
+
+    public static <T extends Comparable<T>> int sortedIndex(T[] args, T obj) {
+        int index = Collections.binarySearch(_l(args), obj);
+        return index > 0 ? index : index + args.length + 1;
+    }
 }
