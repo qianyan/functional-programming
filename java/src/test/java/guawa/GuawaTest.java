@@ -5,6 +5,7 @@ import org.junit.Test;
 import static guawa.Guawa.*;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
+import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
 
 public class GuawaTest {
@@ -149,5 +150,23 @@ public class GuawaTest {
     public void sorted_index() throws Exception {
         assertThat(Guawa.sortedIndex(_a(1, 2, 5, 6), 5), is(2));
         assertThat(Guawa.sortedIndex(_a(1, 2, 5, 6), 4), is(2));
+    }
+
+    @Test
+    public void head() throws Exception {
+        assertThat(Guawa.head(_a(1,2,3,4,5)), is(1));
+        assertThat(Guawa.head(_a(1)), is(1));
+        assertThat(Guawa.head(_a()), nullValue());
+    }
+
+    @Test
+    public void tail() throws Exception {
+        assertThat(Guawa.tail(_a(1, 2, 3, 4, 5)), is(_a(2, 3, 4, 5)));
+        assertThat(Guawa.tail(_a(1)), is(_a()));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void should_throw_exception_tail_for_empty_array() throws Exception {
+        Guawa.tail(_a());
     }
 }

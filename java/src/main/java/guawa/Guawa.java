@@ -220,4 +220,12 @@ public class Guawa {
         int index = Collections.binarySearch(_l(args), obj);
         return index > 0 ? index : index + args.length + 1;
     }
+
+    public static <T> T head(T[] args) {
+        return Iterables.getFirst(_l(args), null);
+    }
+
+    public static <T> T[] tail(T[] args) {
+        return (T[])_l(args).subList(1, args.length).toArray();
+    }
 }
