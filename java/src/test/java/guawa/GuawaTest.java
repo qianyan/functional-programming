@@ -102,7 +102,7 @@ public class GuawaTest {
 
     @Test
     public void without_() throws Exception {
-        assertThat(Guawa.without(_a(1, 2, 3, 4, 2), 1, 3, 3 ,4), is(_a(2, 2)));
+        assertThat(Guawa.without(_a(1, 2, 3, 4, 2), 1, 3, 3, 4), is(_a(2, 2)));
     }
 
     @Test
@@ -154,7 +154,7 @@ public class GuawaTest {
 
     @Test
     public void head() throws Exception {
-        assertThat(Guawa.head(_a(1,2,3,4,5)), is(1));
+        assertThat(Guawa.head(_a(1, 2, 3, 4, 5)), is(1));
         assertThat(Guawa.head(_a(1)), is(1));
         assertThat(Guawa.head(_a()), nullValue());
     }
@@ -168,5 +168,20 @@ public class GuawaTest {
     @Test(expected = IllegalArgumentException.class)
     public void should_throw_exception_tail_for_empty_array() throws Exception {
         Guawa.tail(_a());
+    }
+
+    @Test
+    public void pluck() throws Exception {
+        assertThat(Guawa.pluck(_a(new Person("A", "female"),
+                        new Person("B", "male"),
+                        new Person("B", "female")),
+                        _m("name", String.class)),
+                is(_a("A", "B", "B")));
+
+        assertThat(Guawa.pluck(_a(new Person("A", "female"),
+                        new Person("B", "male"),
+                        new Person("B", "female")),
+                        _m("gender", String.class)),
+                is(_a("female", "male", "female")));
     }
 }

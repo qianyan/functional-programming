@@ -228,4 +228,21 @@ public class Guawa {
     public static <T> T[] tail(T[] args) {
         return (T[])_l(args).subList(1, args.length).toArray();
     }
+
+    public static <T, F> F[] pluck(T[] args, final Map<String, Class<F>> name$Type) {
+        final Map.Entry<String, Class<F>> entry = name$Type.entrySet().iterator().next();
+        return FluentIterable.of(args).transform(new Function<T, F>() {
+            @Override
+            public F apply(T obj) {
+                try {
+                    Field field = obj.getClass().getDeclaredField(entry.getKey());
+                    field.setAccessible(true);
+                    return (F)field.get(obj);
+                } catch (NoSuchFieldException | IllegalAccessException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        }).toArray(entry.getValue());
+    }
 }
