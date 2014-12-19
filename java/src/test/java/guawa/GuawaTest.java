@@ -1,5 +1,6 @@
 package guawa;
 
+import com.google.common.base.Function;
 import org.junit.Test;
 
 import static guawa.Guawa.*;
@@ -7,6 +8,11 @@ import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
 import static org.hamcrest.core.IsNull.nullValue;
 import static org.junit.Assert.assertThat;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.Matchers.anyInt;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 public class GuawaTest {
     @Test
@@ -183,5 +189,15 @@ public class GuawaTest {
                         new Person("B", "female")),
                         _m("gender", String.class)),
                 is(_a("female", "male", "female")));
+    }
+
+    @Test
+    public void times_() throws Exception {
+        Function<Integer, Object> func = mock(Function.class);
+        given(func.apply(anyInt())).willReturn(anyObject());
+
+        Guawa.times(3, func);
+
+        verify(func, times(3)).apply(anyInt());
     }
 }

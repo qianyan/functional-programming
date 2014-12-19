@@ -245,4 +245,10 @@ public class Guawa {
             }
         }).toArray(entry.getValue());
     }
+
+    public static void times(int times, Function func) {
+        for (int i = 0; i < times; i++) {
+            func.apply(i);
+        }
+    }
 }

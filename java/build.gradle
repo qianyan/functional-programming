@@ -5,7 +5,12 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    mockitoVersion = '1.9.5'
+    junitVersion = '4.11'
+}
+
 dependencies {
     compile ('com.google.guava:guava:18.0')
-    testCompile ('junit:junit:4.11')
+    testCompile ("junit:junit:$junitVersion", "org.mockito:mockito-core:$mockitoVersion")
 }
