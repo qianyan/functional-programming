@@ -3,6 +3,7 @@ package guawa;
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import org.junit.Test;
+import org.mockito.Mockito;
 
 import static guawa.Guawa.*;
 import static org.hamcrest.core.Is.is;
@@ -12,8 +13,8 @@ import static org.junit.Assert.assertThat;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Matchers.anyInt;
 import static org.mockito.Matchers.anyObject;
-import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 public class GuawaTest {
     @Test
@@ -27,8 +28,8 @@ public class GuawaTest {
     }
 
     @Test
-    public void flatten_() throws Exception {
-        assertThat(flatten(_l(
+    public void flatten() throws Exception {
+        assertThat(Guawa.flatten(_l(
                 _l(1, 2),
                 _l(3, 4),
                 _l(5)
@@ -36,8 +37,8 @@ public class GuawaTest {
     }
 
     @Test
-    public void count_() throws Exception {
-        assertThat(count(_l(1, 2, 3, 2, 4, 5, 2), 2), is(3));
+    public void count() throws Exception {
+        assertThat(Guawa.count(_l(1, 2, 3, 2, 4, 5, 2), 2), is(3));
     }
 
     @Test
@@ -61,13 +62,13 @@ public class GuawaTest {
     }
 
     @Test
-    public void union_() throws Exception {
+    public void union() throws Exception {
         assertThat(uSet(_s(1, 2, 3, 4), _s(2, 3, 6)), is(_s(1, 2, 3, 4, 6)));
     }
 
     @Test
-    public void reverse_() throws Exception {
-        assertThat(reverse(_l(1, 2, 3, 4, 5)), is(_l(5, 4, 3, 2, 1)));
+    public void reverse() throws Exception {
+        assertThat(Guawa.reverse(_l(1, 2, 3, 4, 5)), is(_l(5, 4, 3, 2, 1)));
     }
 
     @Test
@@ -91,9 +92,9 @@ public class GuawaTest {
     }
 
     @Test
-    public void compact_() throws Exception {
-        assertThat(compact(_a(1, null, 2, 3, 4)), is(_a(1, 2, 3, 4)));
-        assertThat(compact(_a("1", null, "2", "3", "4")), is(_a("1", "2", "3", "4")));
+    public void compact() throws Exception {
+        assertThat(Guawa.compact(_a(1, null, 2, 3, 4)), is(_a(1, 2, 3, 4)));
+        assertThat(Guawa.compact(_a("1", null, "2", "3", "4")), is(_a("1", "2", "3", "4")));
     }
 
     @Test
@@ -118,7 +119,7 @@ public class GuawaTest {
     }
 
     @Test
-    public void without_() throws Exception {
+    public void without() throws Exception {
         assertThat(Guawa.without(_a(1, 2, 3, 4, 2), 1, 3, 3, 4), is(_a(2, 2)));
     }
 
@@ -183,7 +184,7 @@ public class GuawaTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void should_throw_exception_tail_for_empty_array() throws Exception {
+    public void should_throw_exception_when_tail_for_empty_array() throws Exception {
         Guawa.tail(_a());
     }
 
@@ -203,12 +204,12 @@ public class GuawaTest {
     }
 
     @Test
-    public void times_() throws Exception {
+    public void times() throws Exception {
         Function<Integer, Object> func = mock(Function.class);
         given(func.apply(anyInt())).willReturn(anyObject());
 
         Guawa.times(3, func);
 
-        verify(func, times(3)).apply(anyInt());
+        verify(func, Mockito.times(3)).apply(anyInt());
     }
 }
