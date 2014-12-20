@@ -3,6 +3,7 @@ package guawa;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
+import com.google.common.base.Predicates;
 import com.google.common.collect.*;
 
 import java.lang.reflect.Field;
@@ -250,5 +251,9 @@ public class Guawa {
         for (int i = 0; i < times; i++) {
             func.apply(i);
         }
+    }
+
+    public static <T> T[] reject(T[] args, Predicate<T> predicate) {
+        return FluentIterable.of(args).filter(Predicates.not(predicate)).toArray((Class<T>)Object.class);
     }
 }

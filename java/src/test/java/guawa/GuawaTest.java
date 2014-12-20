@@ -1,6 +1,7 @@
 package guawa;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 import org.junit.Test;
 
 import static guawa.Guawa.*;
@@ -93,6 +94,16 @@ public class GuawaTest {
     public void compact_() throws Exception {
         assertThat(compact(_a(1, null, 2, 3, 4)), is(_a(1, 2, 3, 4)));
         assertThat(compact(_a("1", null, "2", "3", "4")), is(_a("1", "2", "3", "4")));
+    }
+
+    @Test
+    public void reject() throws Exception {
+        assertThat(Guawa.reject(_a(1, 2, 3, 4, 5), new Predicate<Integer>(){
+            @Override
+            public boolean apply(Integer input) {
+                return input % 2 == 0;
+            }
+        }), is(_a(1, 3, 5)));
     }
 
     @Test
