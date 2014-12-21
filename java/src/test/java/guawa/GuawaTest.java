@@ -212,4 +212,15 @@ public class GuawaTest {
 
         verify(func, Mockito.times(3)).apply(anyInt());
     }
+
+    @Test
+    public void sortBy() throws Exception {
+        assertThat(Guawa.sortBy(_a(1.0, 2.0, 3.0, 4.0, 5.0, 6.0), new Function<Double, Double>() {
+            @Override
+            public Double apply(Double elem) {
+                return Math.sin(elem);
+            }
+        }), is(_a(5.0, 4.0, 6.0, 3.0, 1.0, 2.0)));
+    }
+
 }

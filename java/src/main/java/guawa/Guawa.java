@@ -256,4 +256,16 @@ public class Guawa {
     public static <T> T[] reject(T[] args, Predicate<T> predicate) {
         return FluentIterable.of(args).filter(Predicates.not(predicate)).toArray((Class<T>)Object.class);
     }
+
+    public static <T extends Comparable<T>> T[] sortBy(T[] args, final Function<T, T> func) {
+        T[] copyOfArgs = args.clone();
+         Arrays.sort(copyOfArgs, new Comparator<T>() {
+            @Override
+            public int compare(T pre, T next) {
+                return func.apply(pre).compareTo(func.apply(next));
+            }
+        });
+
+        return copyOfArgs;
+    }
 }
