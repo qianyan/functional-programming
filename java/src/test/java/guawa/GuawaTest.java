@@ -223,4 +223,9 @@ public class GuawaTest {
         }), is(_a(5.0, 4.0, 6.0, 3.0, 1.0, 2.0)));
     }
 
+    @Test
+    public void random() throws Exception {
+        int random = Guawa.random(0, 100);
+        assertThat(random > 0 && random < 100, is(true));
+    }
 }

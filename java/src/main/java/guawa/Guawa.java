@@ -268,4 +268,10 @@ public class Guawa {
 
         return copyOfArgs;
     }
+
+    public static int random(int start, int end) {
+        Random random = new Random();
+        int number = random.nextInt(end - start);
+        return number + start;
+    }
 }
