@@ -232,7 +232,11 @@ public class Guawa {
 
     public static <T, F> F[] pluck(T[] args, final Map<String, Class<F>> name$Type) {
         final Map.Entry<String, Class<F>> entry = name$Type.entrySet().iterator().next();
-        return FluentIterable.of(args).transform(new Function<T, F>() {
+        return of(args).transform(toField(entry)).toArray(entry.getValue());
+    }
+
+    private static <T, F> Function<T, F> toField(final Map.Entry<String, Class<F>> entry) {
+        return new Function<T, F>() {
             @Override
             public F apply(T obj) {
                 try {
@@ -244,7 +248,7 @@ public class Guawa {
                 }
                 return null;
             }
-        }).toArray(entry.getValue());
+        };
     }
 
     public static void times(int times, Function func) {
@@ -254,7 +258,7 @@ public class Guawa {
     }
 
     public static <T> T[] reject(T[] args, Predicate<T> predicate) {
-        return FluentIterable.of(args).filter(Predicates.not(predicate)).toArray((Class<T>)Object.class);
+        return of(args).filter(Predicates.not(predicate)).toArray((Class<T>)Object.class);
     }
 
     public static <T extends Comparable<T>> T[] sortBy(T[] args, final Function<T, T> func) {
@@ -273,5 +277,10 @@ public class Guawa {
         Random random = new Random();
         int number = random.nextInt(end - start);
         return number + start;
+    }
+
+    public static <T, F> Map<F, T> indexBy(T[] args, final Map<String, Class<F>> name$Type) {
+        final Map.Entry<String, Class<F>> entry = name$Type.entrySet().iterator().next();
+        return of(args).uniqueIndex(toField(entry));
     }
 }

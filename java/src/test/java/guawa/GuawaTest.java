@@ -5,6 +5,9 @@ import com.google.common.base.Predicate;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static guawa.Guawa.*;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsNot.not;
@@ -227,5 +230,18 @@ public class GuawaTest {
     public void random() throws Exception {
         int random = Guawa.random(0, 100);
         assertThat(random > 0 && random < 100, is(true));
+    }
+
+    @Test
+    public void indexBy() throws Exception {
+        Map<String, Person> expectedMap = new HashMap<>();
+        expectedMap.put("A", new Person("A", "female"));
+        expectedMap.put("B", new Person("B", "male"));
+        expectedMap.put("C", new Person("C", "female"));
+
+        assertThat(Guawa.indexBy(_a(new Person("A", "female"),
+                new Person("B", "male"),
+                new Person("C", "female")),
+                _m("name", String.class)), is(expectedMap));
     }
 }
