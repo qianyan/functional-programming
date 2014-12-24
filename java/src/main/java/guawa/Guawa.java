@@ -16,17 +16,6 @@ import static com.google.common.collect.Iterables.limit;
 import static com.google.common.collect.Lists.newArrayList;
 
 public class Guawa {
-    public static <T> T[] _a(T... args) {
-        return args;
-    }
-
-    public static <T> List<T> _l(T... args) {
-        return Arrays.asList(args);
-    }
-
-    public static <T> Set<T> _s(T... args) {
-        return Sets.newHashSet(args);
-    }
 
     public static int sumCubes(int floor, int ceil) {
         int sum = 0;
@@ -65,7 +54,7 @@ public class Guawa {
         });
     }
 
-    public static <T> List<T> uniq(T... list) {
+    public static <T> List<T> continuniq(T... list) {
         List<T> aList = newArrayList();
         PeekingIterator<T> iterator = Iterators.peekingIterator(Arrays.asList(list).iterator());
         while (iterator.hasNext()) {
@@ -164,7 +153,7 @@ public class Guawa {
     }
 
     public static <T> T[] without(T[] args, T... without) {
-        Set<T> set = _s(without);
+        Set<T> set = Converter._s(without);
         List<T> list = new ArrayList<>();
         for (T arg : args) {
             if (!set.contains(arg)) {
@@ -175,7 +164,7 @@ public class Guawa {
     }
 
     public static <T> int indexOf(T[] args, final T arg) {
-        return Iterables.indexOf(_l(args), new Predicate<T>() {
+        return Iterables.indexOf(Converter._l(args), new Predicate<T>() {
             @Override
             public boolean apply(T input) {
                 return input.equals(arg);
@@ -184,11 +173,11 @@ public class Guawa {
     }
 
     public static <T> int lastIndexOf(T[] args, final T arg) {
-        return _l(args).lastIndexOf(arg);
+        return Converter._l(args).lastIndexOf(arg);
     }
 
     public static <T> T[] shuffle(T[] args) {
-        List<T> list = _l(args);
+        List<T> list = Converter._l(args);
         Collections.shuffle(list);
         return (T[]) list.toArray();
     }
@@ -218,16 +207,8 @@ public class Guawa {
     }
 
     public static <T extends Comparable<T>> int sortedIndex(T[] args, T obj) {
-        int index = Collections.binarySearch(_l(args), obj);
+        int index = Collections.binarySearch(Converter._l(args), obj);
         return index > 0 ? index : index + args.length + 1;
-    }
-
-    public static <T> T head(T[] args) {
-        return Iterables.getFirst(_l(args), null);
-    }
-
-    public static <T> T[] tail(T[] args) {
-        return (T[]) _l(args).subList(1, args.length).toArray();
     }
 
     public static <T, F> F[] pluck(T[] args, final Map<String, Class<F>> name$Type) {
