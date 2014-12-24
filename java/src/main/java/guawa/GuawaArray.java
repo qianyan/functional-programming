@@ -9,22 +9,24 @@ import java.util.*;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.collect.FluentIterable.of;
+import static guawa.Converter._l;
+import static guawa.Converter._s;
 
 public class GuawaArray {
     public static <T> T head(T[] args) {
-        return Iterables.getFirst(Converter._l(args), null);
+        return Iterables.getFirst(_l(args), null);
     }
 
     public static <T> T[] tail(T[] args) {
-        return (T[]) Converter._l(args).subList(1, args.length).toArray();
+        return (T[]) _l(args).subList(1, args.length).toArray();
     }
 
     public static <T> T[] uniq(T[] args) {
-        return (T[]) Converter._s(args).toArray();
+        return (T[]) _s(args).toArray();
     }
 
     public static <T> int indexOf(T[] args, final T arg) {
-        return Iterables.indexOf(Converter._l(args), new Predicate<T>() {
+        return Iterables.indexOf(_l(args), new Predicate<T>() {
             @Override
             public boolean apply(T input) {
                 return input.equals(arg);
@@ -33,11 +35,11 @@ public class GuawaArray {
     }
 
     public static <T> int lastIndexOf(T[] args, final T arg) {
-        return Converter._l(args).lastIndexOf(arg);
+        return _l(args).lastIndexOf(arg);
     }
 
     public static <T> T[] shuffle(T[] args) {
-        List<T> list = Converter._l(args);
+        List<T> list = _l(args);
         Collections.shuffle(list);
         return (T[]) list.toArray();
     }
@@ -48,7 +50,7 @@ public class GuawaArray {
     }
 
     public static <T extends Comparable<T>> int sortedIndex(T[] args, T obj) {
-        int index = Collections.binarySearch(Converter._l(args), obj);
+        int index = Collections.binarySearch(_l(args), obj);
         return index > 0 ? index : index + args.length + 1;
     }
 
@@ -84,7 +86,7 @@ public class GuawaArray {
     }
 
     public static <T> T[] without(T[] args, T... without) {
-        Set<T> set = Converter._s(without);
+        Set<T> set = _s(without);
         List<T> list = new ArrayList<>();
         for (T arg : args) {
             if (!set.contains(arg)) {
