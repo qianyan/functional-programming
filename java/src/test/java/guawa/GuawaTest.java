@@ -185,9 +185,12 @@ public class GuawaTest {
 
     @Test
     public void groupBy() throws Exception {
-        Map<String, Collection<Person>> expectedGroup = new HashMap<>();
-        expectedGroup.put("A", _l(new Person("A", "female")));
-        expectedGroup.put("B", _l(new Person("B", "male"), new Person("B", "female")));
+        Map<String, Collection<Person>> expectedGroup = new HashMap() {
+            {
+                put("A", _l(new Person("A", "female")));
+                put("B", _l(new Person("B", "male"), new Person("B", "female")));
+            }
+        };
 
         assertThat(Guawa.groupBy(_a(new Person("A", "female"),
                         new Person("B", "male"),
