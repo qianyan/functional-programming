@@ -5,6 +5,7 @@ import com.google.common.base.Predicate;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -249,5 +250,17 @@ public class GuawaTest {
                 new Person("B", "male"),
                 new Person("C", "female")),
                 _m("name", String.class)), is(expectedMap));
+    }
+
+    @Test
+    public void groupBy() throws Exception {
+        Map<String, Collection<Person>> expectedGroup = new HashMap<>();
+        expectedGroup.put("A", _l(new Person("A", "female")));
+        expectedGroup.put("B", _l(new Person("B", "male"), new Person("B", "female")));
+
+        assertThat(Guawa.groupBy(_a(new Person("A", "female"),
+                new Person("B", "male"),
+                new Person("B", "female")), _m("name", String.class)),
+                is(expectedGroup));
     }
 }

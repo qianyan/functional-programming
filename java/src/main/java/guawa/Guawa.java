@@ -291,12 +291,21 @@ public class Guawa {
     }
 
     public static <T, F> List<T> where(List<T> args, Map<String, F> prop) {
-        final Map.Entry<String, F> first = prop.entrySet().iterator().next();
+        final Map.Entry<String, F> first = firstEntry(prop);
         return FluentIterable.from(args).filter(new Predicate<T>() {
             @Override
             public boolean apply(T input) {
                 return fieldOf(first.getKey(), input).equals(first.getValue());
             }
         }).toList();
+    }
+
+    private static <F> Map.Entry<String, F> firstEntry(Map<String, F> prop) {
+        return prop.entrySet().iterator().next();
+    }
+
+    public static <T, F> Map<F, Collection<T>> groupBy(T[] args, Map<String, Class<F>> name$Type) {
+        Map.Entry<String, Class<F>> entry = firstEntry(name$Type);
+        return FluentIterable.of(args).index(toField(entry)).asMap();
     }
 }
