@@ -25,7 +25,7 @@ public class GuawaTest {
 
     @Test
     public void remove_continuous_duplicated_elements_of_list() throws Exception {
-        assertThat(continuniq(1, 2, 2, 3, 4, 4, 5), is(Converter._l(1, 2, 3, 4, 5)));
+        assertThat(continuniq(1, 2, 2, 3, 4, 4, 2, 5), is(Converter._l(1, 2, 3, 4, 2, 5)));
     }
 
     @Test
