@@ -171,14 +171,14 @@ public class Guawa {
                 list.add(arg);
             }
         }
-        return (T[])list.toArray();
+        return (T[]) list.toArray();
     }
 
     public static <T> int indexOf(T[] args, final T arg) {
         return Iterables.indexOf(_l(args), new Predicate<T>() {
             @Override
             public boolean apply(T input) {
-                return input.equals(arg) ;
+                return input.equals(arg);
             }
         });
     }
@@ -190,7 +190,7 @@ public class Guawa {
     public static <T> T[] shuffle(T[] args) {
         List<T> list = _l(args);
         Collections.shuffle(list);
-        return (T[])list.toArray();
+        return (T[]) list.toArray();
     }
 
     public static <T> T[] sample(T[] args, int count) {
@@ -227,7 +227,7 @@ public class Guawa {
     }
 
     public static <T> T[] tail(T[] args) {
-        return (T[])_l(args).subList(1, args.length).toArray();
+        return (T[]) _l(args).subList(1, args.length).toArray();
     }
 
     public static <T, F> F[] pluck(T[] args, final Map<String, Class<F>> name$Type) {
@@ -239,16 +239,22 @@ public class Guawa {
         return new Function<T, F>() {
             @Override
             public F apply(T obj) {
-                try {
-                    Field field = obj.getClass().getDeclaredField(entry.getKey());
-                    field.setAccessible(true);
-                    return (F)field.get(obj);
-                } catch (NoSuchFieldException | IllegalAccessException e) {
-                    e.printStackTrace();
-                }
-                return null;
+                return fieldOf(entry.getKey(), obj);
             }
+
+
         };
+    }
+
+    private static <T, F> F fieldOf(String name, T obj) {
+        try {
+            Field field = obj.getClass().getDeclaredField(name);
+            field.setAccessible(true);
+            return (F) field.get(obj);
+        } catch (NoSuchFieldException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public static void times(int times, Function func) {
@@ -258,12 +264,12 @@ public class Guawa {
     }
 
     public static <T> T[] reject(T[] args, Predicate<T> predicate) {
-        return of(args).filter(Predicates.not(predicate)).toArray((Class<T>)Object.class);
+        return of(args).filter(Predicates.not(predicate)).toArray((Class<T>) Object.class);
     }
 
     public static <T extends Comparable<T>> T[] sortBy(T[] args, final Function<T, T> func) {
         T[] copyOfArgs = args.clone();
-         Arrays.sort(copyOfArgs, new Comparator<T>() {
+        Arrays.sort(copyOfArgs, new Comparator<T>() {
             @Override
             public int compare(T pre, T next) {
                 return func.apply(pre).compareTo(func.apply(next));
@@ -282,5 +288,15 @@ public class Guawa {
     public static <T, F> Map<F, T> indexBy(T[] args, final Map<String, Class<F>> name$Type) {
         final Map.Entry<String, Class<F>> entry = name$Type.entrySet().iterator().next();
         return of(args).uniqueIndex(toField(entry));
+    }
+
+    public static <T, F> List<T> where(List<T> args, Map<String, F> prop) {
+        final Map.Entry<String, F> first = prop.entrySet().iterator().next();
+        return FluentIterable.from(args).filter(new Predicate<T>() {
+            @Override
+            public boolean apply(T input) {
+                return fieldOf(first.getKey(), input).equals(first.getValue());
+            }
+        }).toList();
     }
 }
