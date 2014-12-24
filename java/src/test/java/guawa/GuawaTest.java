@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import static guawa.Converter._a;
 import static guawa.Guawa.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -18,6 +19,34 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
 public class GuawaTest {
+    @Test
+    public void pluck() throws Exception {
+        assertThat(Guawa.pluck(_a(new Person("A", "female"),
+                                new Person("B", "male"),
+                                new Person("B", "female")),
+                        _m("name", String.class)),
+                is(_a("A", "B", "B")));
+
+        assertThat(Guawa.pluck(_a(new Person("A", "female"),
+                                new Person("B", "male"),
+                                new Person("B", "female")),
+                        _m("gender", String.class)),
+                is(_a("female", "male", "female")));
+    }
+
+    @Test
+    public void indexBy() throws Exception {
+        Map<String, Person> expectedMap = new HashMap<>();
+        expectedMap.put("A", new Person("A", "female"));
+        expectedMap.put("B", new Person("B", "male"));
+        expectedMap.put("C", new Person("C", "female"));
+
+        assertThat(Guawa.indexBy(_a(new Person("A", "female"),
+                        new Person("B", "male"),
+                        new Person("C", "female")),
+                _m("name", String.class)), is(expectedMap));
+    }
+
     @Test
     public void infinite_sequence_sum_cubes() throws Exception {
         assertThat(sumCubes(1, 4), is(100));
@@ -132,8 +161,8 @@ public class GuawaTest {
 
     @Test
     public void sorted_index() throws Exception {
-        assertThat(Guawa.sortedIndex(Converter._a(1, 2, 5, 6), 5), is(2));
-        assertThat(Guawa.sortedIndex(Converter._a(1, 2, 5, 6), 4), is(2));
+        assertThat(GuawaArray.sortedIndex(Converter._a(1, 2, 5, 6), 5), is(2));
+        assertThat(GuawaArray.sortedIndex(Converter._a(1, 2, 5, 6), 4), is(2));
     }
 
 

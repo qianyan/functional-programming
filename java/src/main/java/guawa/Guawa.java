@@ -3,7 +3,6 @@ package guawa;
 import com.google.common.base.Function;
 import com.google.common.base.Joiner;
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import com.google.common.collect.*;
 
 import java.lang.reflect.Field;
@@ -109,15 +108,6 @@ public class Guawa {
         return start + mkString(args, seperator) + end;
     }
 
-    public static <T> T[] compact(T[] arr) {
-        return of(arr).filter(new Predicate<T>() {
-            @Override
-            public boolean apply(T a) {
-                return a != null;
-            }
-        }).toArray((Class<T>) Object.class);
-    }
-
     public static <T> Map<String, T> _m(String key, T value) {
         HashMap<String, T> map = new HashMap<>();
         map.put(key, value);
@@ -152,43 +142,8 @@ public class Guawa {
         return null;
     }
 
-    public static <T> T[] without(T[] args, T... without) {
-        Set<T> set = Converter._s(without);
-        List<T> list = new ArrayList<>();
-        for (T arg : args) {
-            if (!set.contains(arg)) {
-                list.add(arg);
-            }
-        }
-        return (T[]) list.toArray();
-    }
-
-    public static <T> int indexOf(T[] args, final T arg) {
-        return Iterables.indexOf(Converter._l(args), new Predicate<T>() {
-            @Override
-            public boolean apply(T input) {
-                return input.equals(arg);
-            }
-        });
-    }
-
-    public static <T> int lastIndexOf(T[] args, final T arg) {
-        return Converter._l(args).lastIndexOf(arg);
-    }
-
-    public static <T> T[] shuffle(T[] args) {
-        List<T> list = Converter._l(args);
-        Collections.shuffle(list);
-        return (T[]) list.toArray();
-    }
-
     public static <T> T[] sample(T[] args, int count) {
-        return Arrays.copyOf(shuffle(args), count);
-    }
-
-    public static <T> T[] initial(T[] args, int lastCount) {
-        checkArgument(lastCount >= 0 && lastCount <= args.length, "last counts is not allowed");
-        return Arrays.copyOf(args, args.length - lastCount);
+        return Arrays.copyOf(GuawaArray.shuffle(args), count);
     }
 
     public static Integer[] range(int stop) {
@@ -204,11 +159,6 @@ public class Guawa {
         checkArgument(step > 0 && step <= len, "step is not allowed");
         int count = len / step;
         return newArrayList(limit(from(start, step), count)).toArray(new Integer[count]);
-    }
-
-    public static <T extends Comparable<T>> int sortedIndex(T[] args, T obj) {
-        int index = Collections.binarySearch(Converter._l(args), obj);
-        return index > 0 ? index : index + args.length + 1;
     }
 
     public static <T, F> F[] pluck(T[] args, final Map<String, Class<F>> name$Type) {
@@ -242,28 +192,6 @@ public class Guawa {
         for (int i = 0; i < times; i++) {
             func.apply(i);
         }
-    }
-
-    public static <T> T[] reject(T[] args, Predicate<T> predicate) {
-        return of(args).filter(Predicates.not(predicate)).toArray((Class<T>) Object.class);
-    }
-
-    public static <T extends Comparable<T>> T[] sortBy(T[] args, final Function<T, T> func) {
-        T[] copyOfArgs = args.clone();
-        Arrays.sort(copyOfArgs, new Comparator<T>() {
-            @Override
-            public int compare(T pre, T next) {
-                return func.apply(pre).compareTo(func.apply(next));
-            }
-        });
-
-        return copyOfArgs;
-    }
-
-    public static int random(int start, int end) {
-        Random random = new Random();
-        int number = random.nextInt(end - start);
-        return number + start;
     }
 
     public static <T, F> Map<F, T> indexBy(T[] args, final Map<String, Class<F>> name$Type) {
