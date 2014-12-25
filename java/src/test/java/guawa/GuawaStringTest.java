@@ -10,4 +10,9 @@ public class GuawaStringTest {
     public void capitalize() throws Exception {
         assertThat(GuawaString.capitalize(" hello "), is("Hello"));
     }
+
+    @Test
+    public void slugify() throws Exception {
+        assertThat(GuawaString.slugify(" hello World!"), is("hello-world"));
+    }
 }
