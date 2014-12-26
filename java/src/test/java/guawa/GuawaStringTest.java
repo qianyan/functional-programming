@@ -15,4 +15,12 @@ public class GuawaStringTest {
     public void slugify() throws Exception {
         assertThat(GuawaString.slugify(" hello World!"), is("hello-world"));
     }
+
+    @Test
+    public void trim() throws Exception {
+        assertThat(GuawaString.trim(" foo "), is("foo"));
+        assertThat(GuawaString.trim("foo", "f"), is("oo"));
+        assertThat(GuawaString.trim("fooff", "f"), is("oo"));
+        assertThat(GuawaString.trim("_-foo-_", "_-"), is("foo"));
+    }
 }

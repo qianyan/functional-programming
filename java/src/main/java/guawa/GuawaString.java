@@ -20,4 +20,12 @@ public class GuawaString {
         String s1 = CharMatcher.JAVA_LETTER.negate().removeFrom(s);
         return CaseFormat.UPPER_CAMEL.to(CaseFormat.LOWER_HYPHEN, s1);
     }
+
+    public static String trim(String word, String match) {
+        return CharMatcher.anyOf(match).removeFrom(word);
+    }
+
+    public static String trim(String word) {
+        return word.trim();
+    }
 }
