@@ -28,4 +28,24 @@ public class GuawaString {
     public static String trim(String word) {
         return word.trim();
     }
+
+    public static String ltrim(String word) {
+        return word.substring(word.indexOf(trim(word)));
+    }
+
+    public static String ltrim(String word, String match) {
+        return word.substring(word.indexOf(trim(word, match)));
+    }
+
+    public static String rtrim(String word) {
+        return reverse(ltrim(reverse(word)));
+    }
+
+    private static String reverse(String word) {
+        return new StringBuffer(word).reverse().toString();
+    }
+
+    public static String rtrim(String word, String match) {
+        return reverse(ltrim(reverse(word), match));
+    }
 }
