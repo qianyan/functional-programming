@@ -55,6 +55,7 @@ public class GuawaString {
     }
 
     public static <T> String repeat(String word, int count, T insert) {
-        return rtrim(repeat(word + insert, count), insert.toString());
+        String repeat = repeat(word + insert, count);
+        return repeat.substring(0, repeat.length() - insert.toString().length());
     }
 }

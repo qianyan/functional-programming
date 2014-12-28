@@ -1,5 +1,7 @@
 package guawa;
 
+import com.google.common.base.MoreObjects;
+
 public class Person {
     private String name;
     private String gender;
@@ -27,5 +29,13 @@ public class Person {
         int result = name.hashCode();
         result = 31 * result + gender.hashCode();
         return result;
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("name", name)
+                .add("gender", gender)
+                .toString();
     }
 }

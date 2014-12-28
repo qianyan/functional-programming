@@ -29,6 +29,7 @@ public class GuawaStringTest {
         assertThat(GuawaString.ltrim(" foo"), is("foo"));
         assertThat(GuawaString.ltrim(" foo "), is("foo "));
         assertThat(GuawaString.ltrim("foof", "f"), is("oof"));
+        assertThat(GuawaString.ltrim("_-foo-_", "_-"), is("foo-_"));
     }
 
     @Test
@@ -36,7 +37,7 @@ public class GuawaStringTest {
         assertThat(GuawaString.rtrim("foo "), is("foo"));
         assertThat(GuawaString.rtrim(" foo "), is(" foo"));
         assertThat(GuawaString.rtrim("foof", "f"), is("foo"));
-        assertThat(GuawaString.rtrim("fofof", "f"), is("fofo"));
+        assertThat(GuawaString.rtrim("_-foo-_", "_-"), is("_-foo"));
     }
 
     @Test
@@ -46,5 +47,7 @@ public class GuawaStringTest {
         assertThat(GuawaString.repeat("foo", 3), is("foofoofoo"));
         assertThat(GuawaString.repeat("foo", 3, "*"), is("foo*foo*foo"));
         assertThat(GuawaString.repeat("foo", 3, 3), is("foo3foo3foo"));
+        assertThat(GuawaString.repeat("foo", 3, new Person("ryan", "male")),
+                is("fooPerson{name=ryan, gender=male}fooPerson{name=ryan, gender=male}foo"));
     }
 }
