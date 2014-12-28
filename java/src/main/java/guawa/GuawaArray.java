@@ -2,12 +2,12 @@ package guawa;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
-import com.google.common.base.Predicates;
 import com.google.common.collect.Iterables;
 
 import java.util.*;
 
 import static com.google.common.base.Preconditions.checkArgument;
+import static com.google.common.base.Predicates.not;
 import static com.google.common.collect.FluentIterable.of;
 import static guawa.Converter._l;
 import static guawa.Converter._s;
@@ -67,13 +67,11 @@ public class GuawaArray {
     }
 
     public static <T> T[] reject(T[] args, Predicate<T> predicate) {
-        return of(args).filter(Predicates.not(predicate)).toArray((Class<T>) Object.class);
+        return of(args).filter(not(predicate)).toArray((Class<T>) Object.class);
     }
 
     public static int random(int start, int end) {
-        Random random = new Random();
-        int number = random.nextInt(end - start);
-        return number + start;
+        return new Random().nextInt(end - start) + start;
     }
 
     public static <T> T[] compact(T[] arr) {
