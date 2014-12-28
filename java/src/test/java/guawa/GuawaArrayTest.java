@@ -80,6 +80,12 @@ public class GuawaArrayTest {
         assertThat(GuawaArray.tail(_a(1, 2, 3, 4, 5)), is(_a(2, 3, 4, 5)));
         assertThat(GuawaArray.tail(_a(1)), is(_a()));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void should_throw_exception_when_tail_for_empty_array() throws Exception {
+        GuawaArray.tail(_a());
+    }
+
     @Test
     public void uniq() throws Exception {
         assertThat(GuawaArray.uniq(_a(1, 2, 2, 3, 4, 2, 5)), is(_a(1, 2, 3, 4, 5)));

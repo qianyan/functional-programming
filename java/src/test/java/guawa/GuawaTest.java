@@ -167,12 +167,6 @@ public class GuawaTest {
         assertThat(GuawaArray.sortedIndex(_a(1, 2, 5, 6), 4), is(2));
     }
 
-
-    @Test(expected = IllegalArgumentException.class)
-    public void should_throw_exception_when_tail_for_empty_array() throws Exception {
-        GuawaArray.tail(_a());
-    }
-
     @Test
     public void times() throws Exception {
         Function<Integer, Object> func = mock(Function.class);
