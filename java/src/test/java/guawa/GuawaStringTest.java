@@ -36,5 +36,15 @@ public class GuawaStringTest {
         assertThat(GuawaString.rtrim("foo "), is("foo"));
         assertThat(GuawaString.rtrim(" foo "), is(" foo"));
         assertThat(GuawaString.rtrim("foof", "f"), is("foo"));
+        assertThat(GuawaString.rtrim("fofof", "f"), is("fofo"));
+    }
+
+    @Test
+    public void repeat() throws Exception {
+        assertThat(GuawaString.repeat("foo"), is(""));
+        assertThat(GuawaString.repeat(""), is(""));
+        assertThat(GuawaString.repeat("foo", 3), is("foofoofoo"));
+        assertThat(GuawaString.repeat("foo", 3, "*"), is("foo*foo*foo"));
+        assertThat(GuawaString.repeat("foo", 3, 3), is("foo3foo3foo"));
     }
 }
