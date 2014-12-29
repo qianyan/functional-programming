@@ -50,4 +50,10 @@ public class GuawaStringTest {
         assertThat(GuawaString.repeat("foo", 3, new Person("ryan", "male")),
                 is("fooPerson{name=ryan, gender=male}fooPerson{name=ryan, gender=male}foo"));
     }
+
+    @Test
+    public void decapitalize() throws Exception {
+        assertThat(GuawaString.decapitalize(" Hello "), is("hello"));
+        assertThat(GuawaString.decapitalize("HELLO"), is("hELLO"));
+    }
 }

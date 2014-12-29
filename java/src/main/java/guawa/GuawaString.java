@@ -8,12 +8,16 @@ import com.google.common.base.Strings;
 public class GuawaString {
 
     public static String capitalize(String word) {
+        return onCapitalize(word, true);
+    }
+
+    private static String onCapitalize(String word, boolean on) {
         String trimWord = word.trim();
         return (trimWord.isEmpty())
                 ? trimWord
                 : new StringBuilder(trimWord.length())
-                .append(Ascii.toUpperCase(trimWord.charAt(0)))
-                .append(Ascii.toLowerCase(trimWord.substring(1)))
+                .append(on ? Ascii.toUpperCase(trimWord.charAt(0)) : Ascii.toLowerCase(trimWord.charAt(0)))
+                .append(trimWord.substring(1))
                 .toString();
     }
 
@@ -57,5 +61,9 @@ public class GuawaString {
     public static <T> String repeat(String word, int count, T insert) {
         String repeat = repeat(word + insert, count);
         return repeat.substring(0, repeat.length() - insert.toString().length());
+    }
+
+    public static String decapitalize(String word) {
+        return onCapitalize(word, false);
     }
 }
