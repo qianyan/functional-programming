@@ -1,9 +1,6 @@
 package guawa;
 
-import com.google.common.base.Ascii;
-import com.google.common.base.CaseFormat;
-import com.google.common.base.CharMatcher;
-import com.google.common.base.Strings;
+import com.google.common.base.*;
 
 public class GuawaString {
 
@@ -65,5 +62,17 @@ public class GuawaString {
 
     public static String decapitalize(String word) {
         return onCapitalize(word, false);
+    }
+
+    public static String join(String... args) {
+        return Joiner.on("").skipNulls().join(args);
+    }
+
+    public static String reverse(String word) {
+        return new StringBuilder(word).reverse().toString();
+    }
+
+    public static String clean(String word) {
+        return CharMatcher.WHITESPACE.collapseFrom(trim(word), ' ');
     }
 }

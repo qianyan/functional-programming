@@ -56,4 +56,21 @@ public class GuawaStringTest {
         assertThat(GuawaString.decapitalize(" Hello "), is("hello"));
         assertThat(GuawaString.decapitalize("HELLO"), is("hELLO"));
     }
+
+    @Test
+    public void join() throws Exception {
+        assertThat(GuawaString.join("", "foo", "bar"), is("foobar"));
+        assertThat(GuawaString.join("", null, "bar"), is("bar"));
+    }
+
+    @Test
+    public void reverse() throws Exception {
+        assertThat(GuawaString.reverse("foo"), is("oof"));
+        assertThat(GuawaString.reverse("saippuakauppias"), is("saippuakauppias"));
+    }
+
+    @Test
+    public void clean() throws Exception {
+        assertThat(GuawaString.clean(" foo    bar   "), is("foo bar"));
+    }
 }
