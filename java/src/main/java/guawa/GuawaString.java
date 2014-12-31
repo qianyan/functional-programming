@@ -2,6 +2,8 @@ package guawa;
 
 import com.google.common.base.*;
 
+import static com.google.common.collect.Iterables.toArray;
+
 public class GuawaString {
 
     public static String capitalize(String word) {
@@ -74,5 +76,11 @@ public class GuawaString {
 
     public static String clean(String word) {
         return CharMatcher.WHITESPACE.collapseFrom(trim(word), ' ');
+    }
+
+    public static String[] chop(String word, int fixedLength) {
+        Preconditions.checkArgument(fixedLength >= 0, "fixedLength must greater than or equal to zero");
+        if(fixedLength == 0) return new String[]{word};
+        return toArray(Splitter.fixedLength(fixedLength).split(word), String.class);
     }
 }

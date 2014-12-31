@@ -2,6 +2,7 @@ package guawa;
 
 import org.junit.Test;
 
+import static guawa.Converter._a;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
@@ -72,5 +73,12 @@ public class GuawaStringTest {
     @Test
     public void clean() throws Exception {
         assertThat(GuawaString.clean(" foo    bar   "), is("foo bar"));
+    }
+
+    @Test
+    public void chop() throws Exception {
+        assertThat(GuawaString.chop("whitespace", 2), is(_a("wh", "it", "es", "pa", "ce")));
+        assertThat(GuawaString.chop("whitespace", 3), is(_a("whi", "tes", "pac", "e")));
+        assertThat(GuawaString.chop("whitespace", 0), is(_a("whitespace")));
     }
 }
