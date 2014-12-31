@@ -83,4 +83,8 @@ public class GuawaString {
         if(fixedLength == 0) return new String[]{word};
         return toArray(Splitter.fixedLength(fixedLength).split(word), String.class);
     }
+
+    public static String splice(String word, int start, int length, String replacement) {
+        return new StringBuilder(word).replace(start, start + length, replacement).toString();
+    }
 }

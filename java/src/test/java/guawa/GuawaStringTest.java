@@ -81,4 +81,12 @@ public class GuawaStringTest {
         assertThat(GuawaString.chop("whitespace", 3), is(_a("whi", "tes", "pac", "e")));
         assertThat(GuawaString.chop("whitespace", 0), is(_a("whitespace")));
     }
+
+    @Test
+    public void splice() throws Exception {
+        assertThat(GuawaString.splice("whitespace", 5, 5, "shift"), is("whiteshift"));
+        assertThat(GuawaString.splice(
+                        "https://edtsech@bitbucket.org/edtsech/underscore.strings", 30, 7, "epeli"),
+                is("https://edtsech@bitbucket.org/epeli/underscore.strings"));
+    }
 }
