@@ -95,4 +95,24 @@ public class GuawaString {
     public static char succ(char ch) {
         return (char) (ch + 1);
     }
+
+    public static String titleize(String sentence) {
+        String trimedSentence = trim(sentence);
+        StringBuilder sb = new StringBuilder();
+        int length = trimedSentence.length();
+        boolean capitalizeNext = true;
+        for (int i = 0; i < length; i++) {
+            char c = trimedSentence.charAt(i);
+            if (CharMatcher.anyOf("_- ").matches(c)) {
+                sb.append(c);
+                capitalizeNext = true;
+            } else if (capitalizeNext) {
+                sb.append(Character.toTitleCase(c));
+                capitalizeNext = false;
+            } else {
+                sb.append(Character.toLowerCase(c));
+            }
+        }
+        return sb.toString();
+    }
 }

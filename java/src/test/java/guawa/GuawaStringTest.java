@@ -107,4 +107,12 @@ public class GuawaStringTest {
         assertThat(GuawaString.succ('+'), is(','));
         assertThat(GuawaString.succ('1'), is('2'));
     }
+
+    @Test
+    public void titleize() throws Exception {
+        assertThat(GuawaString.titleize("the titleize string method"), is("The Titleize String Method"));
+        assertThat(GuawaString.titleize("a-dash-separated-string"), is("A-Dash-Separated-String"));
+        assertThat(GuawaString.titleize("a_dash_separated_string"), is("A_Dash_Separated_String"));
+        assertThat(GuawaString.titleize("A-DASH-SEPARATED-STRING"), is("A-Dash-Separated-String"));
+    }
 }
