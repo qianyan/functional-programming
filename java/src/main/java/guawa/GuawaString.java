@@ -9,6 +9,7 @@ import static com.google.common.collect.Iterables.toArray;
 public class GuawaString {
 
     private static final Pattern SEPARATORS = Pattern.compile("([_\\- ])");
+    private static final Pattern BEFORE_UPPER_CASE = Pattern.compile("(?=\\p{Upper})");
 
     public static String capitalize(String word) {
         return onCapitalize(word, true);
@@ -122,5 +123,10 @@ public class GuawaString {
 
     public static String camelize(String sentence) {
         return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, CharMatcher.anyOf("- ").collapseFrom(trim(sentence), '_'));
+    }
+
+    public static String dasherize(String sentence) {
+        String UPPER_UNDERSCORE = Joiner.on('_').join(Splitter.on(BEFORE_UPPER_CASE).split(sentence));
+        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, CharMatcher.WHITESPACE.collapseFrom(trim(UPPER_UNDERSCORE), '_'));
     }
 }

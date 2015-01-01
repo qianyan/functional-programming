@@ -126,4 +126,11 @@ public class GuawaStringTest {
         assertThat(GuawaString.camelize(" webkit     transform "), is("webkitTransform"));
         assertThat(GuawaString.camelize("_webkit     transform "), is("WebkitTransform"));
     }
+
+    @Test
+    public void dasherize() throws Exception {
+        assertThat(GuawaString.dasherize("the_dasherize_string_method"), is("the-dasherize-string-method"));
+        assertThat(GuawaString.dasherize("TheDasherizeStringMethod"), is("the-dasherize-string-method"));
+        assertThat(GuawaString.dasherize("the dasherize string method"), is("the-dasherize-string-method"));
+    }
 }
