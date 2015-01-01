@@ -2,9 +2,13 @@ package guawa;
 
 import com.google.common.base.*;
 
+import java.util.regex.Pattern;
+
 import static com.google.common.collect.Iterables.toArray;
 
 public class GuawaString {
+
+    private static final Pattern SEPARATORS = Pattern.compile("([_\\- ])");
 
     public static String capitalize(String word) {
         return onCapitalize(word, true);
@@ -80,7 +84,7 @@ public class GuawaString {
 
     public static String[] chop(String word, int fixedLength) {
         Preconditions.checkArgument(fixedLength >= 0, "fixedLength must greater than or equal to zero");
-        if(fixedLength == 0) return new String[]{word};
+        if (fixedLength == 0) return new String[]{word};
         return toArray(Splitter.fixedLength(fixedLength).split(word), String.class);
     }
 
@@ -114,5 +118,9 @@ public class GuawaString {
             }
         }
         return sb.toString();
+    }
+
+    public static String camelize(String sentence) {
+        return CaseFormat.LOWER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, CharMatcher.anyOf("- ").collapseFrom(trim(sentence), '_'));
     }
 }

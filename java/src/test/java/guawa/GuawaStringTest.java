@@ -115,4 +115,15 @@ public class GuawaStringTest {
         assertThat(GuawaString.titleize("a_dash_separated_string"), is("A_Dash_Separated_String"));
         assertThat(GuawaString.titleize("A-DASH-SEPARATED-STRING"), is("A-Dash-Separated-String"));
     }
+
+    @Test
+    public void camelize() throws Exception {
+        assertThat(GuawaString.camelize("the_camelize_string_method"), is("theCamelizeStringMethod"));
+        assertThat(GuawaString.camelize("the_camelize___string_method"), is("theCamelizeStringMethod"));
+        assertThat(GuawaString.camelize("webkit-transform"), is("webkitTransform"));
+        assertThat(GuawaString.camelize("webkit----transform"), is("webkitTransform"));
+        assertThat(GuawaString.camelize(" webkit transform"), is("webkitTransform"));
+        assertThat(GuawaString.camelize(" webkit     transform "), is("webkitTransform"));
+        assertThat(GuawaString.camelize("_webkit     transform "), is("WebkitTransform"));
+    }
 }
