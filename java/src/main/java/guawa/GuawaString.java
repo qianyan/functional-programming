@@ -87,4 +87,12 @@ public class GuawaString {
     public static String splice(String word, int start, int length, String replacement) {
         return new StringBuilder(word).replace(start, start + length, replacement).toString();
     }
+
+    public static char pred(char ch) {
+        return (char) (ch - 1);
+    }
+
+    public static char succ(char ch) {
+        return (char) (ch + 1);
+    }
 }

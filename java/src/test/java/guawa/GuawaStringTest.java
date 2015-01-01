@@ -89,4 +89,22 @@ public class GuawaStringTest {
                         "https://edtsech@bitbucket.org/edtsech/underscore.strings", 30, 7, "epeli"),
                 is("https://edtsech@bitbucket.org/epeli/underscore.strings"));
     }
+
+    @Test
+    public void pred() throws Exception {
+        assertThat(GuawaString.pred('b'), is('a'));
+        assertThat(GuawaString.pred('B'), is('A'));
+        assertThat(GuawaString.pred(','), is('+'));
+        assertThat(GuawaString.pred('2'), is('1'));
+        assertThat(GuawaString.pred('豈'), is(''));
+    }
+
+    @Test
+    public void succ() throws Exception {
+        assertThat(GuawaString.succ('a'), is('b'));
+        assertThat(GuawaString.succ(''), is('豈'));
+        assertThat(GuawaString.succ('A'), is('B'));
+        assertThat(GuawaString.succ('+'), is(','));
+        assertThat(GuawaString.succ('1'), is('2'));
+    }
 }
