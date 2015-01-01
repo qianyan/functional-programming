@@ -124,13 +124,22 @@ public class GuawaStringTest {
         assertThat(GuawaString.camelize("webkit----transform"), is("webkitTransform"));
         assertThat(GuawaString.camelize(" webkit transform"), is("webkitTransform"));
         assertThat(GuawaString.camelize(" webkit     transform "), is("webkitTransform"));
-        assertThat(GuawaString.camelize("_webkit     transform "), is("WebkitTransform"));
+        assertThat(GuawaString.camelize("_webkit   _  transform "), is("WebkitTransform"));
     }
 
     @Test
     public void dasherize() throws Exception {
         assertThat(GuawaString.dasherize("the_dasherize_string_method"), is("the-dasherize-string-method"));
         assertThat(GuawaString.dasherize("TheDasherizeStringMethod"), is("the-dasherize-string-method"));
+        assertThat(GuawaString.dasherize("The_Dasherize-String_-Method"), is("the-dasherize-string-method"));
         assertThat(GuawaString.dasherize("the dasherize string method"), is("the-dasherize-string-method"));
+    }
+
+    @Test
+    public void underscored() throws Exception {
+        assertThat(GuawaString.underscored("the-underscored-string-method"), is("the_underscored_string_method"));
+        assertThat(GuawaString.underscored("theUnderscoredStringMethod"), is("the_underscored_string_method"));
+        assertThat(GuawaString.underscored("TheUnderscoredStringMethod"), is("the_underscored_string_method"));
+        assertThat(GuawaString.underscored("The-Underscored_String_-Method"), is("the_underscored_string_method"));
     }
 }

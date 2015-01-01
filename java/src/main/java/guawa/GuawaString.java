@@ -126,7 +126,20 @@ public class GuawaString {
     }
 
     public static String dasherize(String sentence) {
-        String UPPER_UNDERSCORE = Joiner.on('_').join(Splitter.on(BEFORE_UPPER_CASE).split(sentence));
-        return CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, CharMatcher.WHITESPACE.collapseFrom(trim(UPPER_UNDERSCORE), '_'));
+        String to = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_HYPHEN, CharMatcher.WHITESPACE.collapseFrom(trim(upperBy_(sentence)), '-'));
+        return cleanBy(to, '-');
+    }
+
+    private static String upperBy_(String sentence) {
+        return Joiner.on('_').join(Splitter.on(BEFORE_UPPER_CASE).split(sentence));
+    }
+
+    public static String underscored(String sentence) {
+        String to = CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_UNDERSCORE, CharMatcher.anyOf("- ").collapseFrom((upperBy_(trim(sentence))), '_'));
+        return cleanBy(to, '_');
+    }
+
+    private static String cleanBy(String to, char underscore) {
+        return CharMatcher.anyOf(String.valueOf(underscore)).collapseFrom(to, underscore);
     }
 }
