@@ -142,4 +142,18 @@ public class GuawaStringTest {
         assertThat(GuawaString.underscored("TheUnderscoredStringMethod"), is("the_underscored_string_method"));
         assertThat(GuawaString.underscored("The-Underscored_String_-Method"), is("the_underscored_string_method"));
     }
+
+    @Test
+    public void classify() throws Exception {
+        assertThat(GuawaString.classify("some_class_name"), is("SomeClassName"));
+        assertThat(GuawaString.classify("my wonderfull class_name"), is("MyWonderfullClassName"));
+    }
+
+    @Test
+    public void humanize() throws Exception {
+        assertThat(GuawaString.humanize("the humanize string method"), is("The humanize string method"));
+        assertThat(GuawaString.humanize("the_humanize_string_method"), is("The humanize string method"));
+        assertThat(GuawaString.humanize("TheHumanizeStringMethod"), is("The humanize string method"));
+        assertThat(GuawaString.humanize("the humanize_id string method"), is("The humanize id string method"));
+    }
 }

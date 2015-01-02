@@ -8,7 +8,6 @@ import static com.google.common.collect.Iterables.toArray;
 
 public class GuawaString {
 
-    private static final Pattern SEPARATORS = Pattern.compile("([_\\- ])");
     private static final Pattern BEFORE_UPPER_CASE = Pattern.compile("(?=\\p{Upper})");
 
     public static String capitalize(String word) {
@@ -141,5 +140,17 @@ public class GuawaString {
 
     private static String cleanBy(String to, char underscore) {
         return CharMatcher.anyOf(String.valueOf(underscore)).collapseFrom(to, underscore);
+    }
+
+    public static String classify(String sentence) {
+        return capitalize(camelize(sentence));
+    }
+
+    public static String humanize(String sentence) {
+        return capitalize(replace(underscored(sentence), '_', ' '));
+    }
+
+    private static String replace(String sentence, char from, char to) {
+        return CharMatcher.anyOf(String.valueOf(from)).replaceFrom(sentence, to);
     }
 }
