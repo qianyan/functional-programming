@@ -27,6 +27,6 @@
 
 (define (mul-rat x y)
 	(make-rat (* (number x) (number y))
-		(* (denom x) (denom y))))
+                  (* (denom x) (denom y))))
 
 (print-rat (mul-rat one-half one-third))
