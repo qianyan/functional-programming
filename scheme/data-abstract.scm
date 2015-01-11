@@ -2,10 +2,16 @@
 (define (gcd a b) (if (= b 0)
 	a
 	(gcd b (remainder a b))))
+(define (abs a)
+  (cond ((>= 0 a) a)
+        (else (- 0 a))))
 
+;; excise 2.3
 (define (make-rat n d)
-	(let ((g (gcd n d)))
-		(cons (/ n g) (/ d g))))
+  (cond ((< 0 (* n d)) (and (set! n (abs n)) (set! d (abs d))))
+        ((< 0 n) (and (set! n (- 0 n)) (set! d (- 0 d)))))
+  (let ((g (gcd n d)))
+    (cons (/ n g) (/ d g))))
 
 (define (number x) (car x))
 
