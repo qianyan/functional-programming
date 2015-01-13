@@ -1,3 +1,4 @@
+# java
 .gradle
 .idea
 gradle
@@ -6,4 +7,7 @@ out
 *.ipr
 *.iml
 *.iws
+
+# javascript
+node_modules
 

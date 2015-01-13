@@ -172,8 +172,6 @@ public class Guawa {
             public F apply(T obj) {
                 return fieldOf(entry.getKey(), obj);
             }
-
-
         };
     }
 
