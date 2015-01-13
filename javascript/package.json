@@ -1,0 +1,19 @@
+{
+  "name": "Functional-Javascript",
+  "version": "0.0.1",
+  "description": "as title",
+  "dependencies": {
+    "underscore": "1.7",
+    "nodeunit": "0.9.0"
+  },
+  "main": "index.js",
+  "directories": {
+    "test": "./test"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "nodeunit"
+  },
+  "author": "ryan",
+  "license": "ISC"
+}
