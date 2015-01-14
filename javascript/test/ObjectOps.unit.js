@@ -46,5 +46,26 @@ module.exports = testCase({
 
         test.deepEqual(actual, expected);
         test.done();
-    }
+    },
+   "should all of true are true": function(test) {
+       var allOf = function() {
+           return _.reduce(arguments, function(truth, next) {
+               return truth && next;
+           });
+       }
+
+       test.ok(allOf(true,true,true,true,true,true,true));
+       test.done();
+   },
+   "should any of true are true": function(test) {
+       var allOf = function() {
+           return _.reduce(arguments, function(truth, next) {
+               return truth || next;
+           });
+       }
+
+       test.ok(allOf(true,true,false,true,true,true,true));
+       test.done();
+   }
+
 })
