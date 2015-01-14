@@ -2,7 +2,6 @@ var testCase  = require('nodeunit').testCase;
 var _ = require('underscore');
 
 module.exports = testCase({
-
     "should map to new object": function (test) {
         var obj = {"001": "YES", "002": "NO", "003": "W"};
         var expectedObj = [ {code: 001, answer: "YES"}, {code: 002, answer: "NO"}, {code: 003, answer: "W"} ];
@@ -47,5 +46,5 @@ module.exports = testCase({
 
         test.deepEqual(actual, expected);
         test.done();
-    } 
+    }
 })
