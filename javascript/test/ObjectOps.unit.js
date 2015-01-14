@@ -95,5 +95,21 @@ module.exports = testCase({
 
        test.deepEqual(result, expectedTable);
        test.done();
-   }
+   },
+   "should rename the key of an object": function(test) {
+       var obj = {"001": "YES", "002": "NO", "003": "W"};
+       
+       var rename = function(obj, newNames) {
+           return _.reduce(newNames, function(memo, v, k) {
+               if(_.has(obj, k)) {
+                  memo[v] = obj[k];
+                  return memo;
+               }
+               return memo;
+           }, _.omit.apply(null, [obj].concat(_.keys(newNames))));
+       };
+
+       test.deepEqual(rename(obj, {"001": "000"}), {"000": "YES", "002": "NO", "003": "W"});
+       test.done();
+   },
 })
