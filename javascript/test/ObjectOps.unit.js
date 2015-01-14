@@ -66,6 +66,34 @@ module.exports = testCase({
 
        test.ok(allOf(true,true,false,true,true,true,true));
        test.done();
-   }
+   },
+   "should pair an object to k-v array": function(test) {
+       var obj = {"001": "YES", "002": "NO", "003": "W"};
+       var expected = [["001", "YES"], ["002", "NO"], ["003", "W"]];
 
+       test.deepEqual(_.pairs(obj), expected);
+       test.done();
+   },
+   "should wrap to an object": function(test) {
+       var array = [["001", "YES"], ["002", "NO"], ["003", "W"]];
+       var obj = {"001": "YES", "002": "NO", "003": "W"};
+
+       test.deepEqual(_.object(array), obj);
+       test.done();
+   },
+   "should pick part of an object": function(test) {
+       var table = [{"001": "YES", "002": "NO", "003": "W"},{"001": "PP", "002": "OO", "003": "WW"}];
+       var expectedTable = [{"001": "YES", "002": "NO"},{"001": "PP", "002": "OO"}];
+       
+       var project = function(obj, keys) {
+           return _.map(obj, function(o) {
+               return _.pick.apply(null, [o].concat(keys));
+           });
+       };
+
+       var result = project(table, ['001', '002']);
+
+       test.deepEqual(result, expectedTable);
+       test.done();
+   }
 })
