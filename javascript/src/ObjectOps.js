@@ -1,6 +1,6 @@
 var _ = require('underscore');
 var F = {
-    project: function(obj, keys) {
+    select: function(obj, keys) {
         return _.map(obj, function(o) {
             return _.pick.apply(null, [o].concat(keys));
         });
@@ -28,6 +28,9 @@ var F = {
         return _.map(args, function(obj) {
             return F.rename(obj, newNames);
         });
+    },
+    restrict: function(objs, pred) {
+        return _.filter(objs, pred);
     }
 };
 module.exports  = F;

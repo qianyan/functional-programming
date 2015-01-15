@@ -67,10 +67,10 @@ module.exports = testCase({
        test.deepEqual(_.object(array), obj);
        test.done();
    },
-   "should pick part of an object": function(test) {
+   "should select parts of an object": function(test) {
        var table = [{"001": "YES", "002": "NO", "003": "W"},{"001": "PP", "002": "OO", "003": "WW"}];
        var expectedTable = [{"001": "YES", "002": "NO"},{"001": "PP", "002": "OO"}];
-       var result = F.project(table, ['001', '002']);
+       var result = F.select(table, ['001', '002']);
 
        test.deepEqual(result, expectedTable);
        test.done();
@@ -85,6 +85,21 @@ module.exports = testCase({
        var objs = [{"001": "YES"}, {"001": "NO"}, {"001": "W"}];
 
        test.deepEqual(F.as(objs, {"001": "000"}), [{"000": "YES"}, {"000": "NO"}, {"000": "W"}]);
+       test.done();
+   },
+   "should select partial fields of table with conditions": function(test) {
+       var people = [{"name": "ryan", "age": 20, "gender": 'male'}, 
+       {"name": "james", "age": 30, "gender": 'male'},
+       {"name": "derek", "age": 28, "gender": 'female'}];
+
+       var result = [{"first name": "james", "gender": 'male', age: 30},
+       {"first name": "derek","gender": 'female', age: 28}];
+
+
+       test.deepEqual(F.restrict(F.select(F.as(people, {"name": 'first name'}), ['first name', 'gender', 'age']), function(person){
+           return person.age > 25;
+       }), result);
+
        test.done();
    }
 });
