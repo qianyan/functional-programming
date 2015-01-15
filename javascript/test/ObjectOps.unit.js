@@ -12,7 +12,6 @@ module.exports = testCase({
         test.deepEqual(actualObj, expectedObj);
         test.done();
     },
-
     "should get a values array for an object": function (test) {
         var obj = {"001": "YES", "002": "NO", "003": "W"};
         var expectedArray = ['YES', 'NO', 'W'];
@@ -21,7 +20,6 @@ module.exports = testCase({
         test.deepEqual(actualArray, expectedArray);
         test.done();
     },
-
     "should reduce an array to an object": function (test) {
         var array = ['YES', 'NO', 'W'];
         var actual = _.reduce(_.map(array, function(v, i) {
@@ -83,7 +81,7 @@ module.exports = testCase({
        test.deepEqual(F.rename(obj, {"001": "000"}), {"000": "YES", "002": "NO", "003": "W"});
        test.done();
    },
-   "should as the key of an object": function(test) {
+   "should batch rename an array: as": function(test) {
        var objs = [{"001": "YES"}, {"001": "NO"}, {"001": "W"}];
 
        test.deepEqual(F.as(objs, {"001": "000"}), [{"000": "YES"}, {"000": "NO"}, {"000": "W"}]);
