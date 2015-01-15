@@ -12,7 +12,7 @@ module.exports = testCase({
         test.deepEqual(actualObj, expectedObj);
         test.done();
     },
-    "should get a values array for an object": function (test) {
+    "should get values from an object": function (test) {
         var obj = {"001": "YES", "002": "NO", "003": "W"};
         var expectedArray = ['YES', 'NO', 'W'];
         var actualArray = _.map(obj, _.identity);
@@ -81,7 +81,7 @@ module.exports = testCase({
        test.deepEqual(F.rename(obj, {"001": "000"}), {"000": "YES", "002": "NO", "003": "W"});
        test.done();
    },
-   "should batch rename an array: as": function(test) {
+   "should batch rename an array using SQL-lick as": function(test) {
        var objs = [{"001": "YES"}, {"001": "NO"}, {"001": "W"}];
 
        test.deepEqual(F.as(objs, {"001": "000"}), [{"000": "YES"}, {"000": "NO"}, {"000": "W"}]);
