@@ -81,7 +81,7 @@ module.exports = testCase({
        test.deepEqual(F.rename(obj, {"001": "000"}), {"000": "YES", "002": "NO", "003": "W"});
        test.done();
    },
-   "should batch rename an array using SQL-lick as": function(test) {
+   "should batch rename an array as": function(test) {
        var objs = [{"001": "YES"}, {"001": "NO"}, {"001": "W"}];
 
        test.deepEqual(F.as(objs, {"001": "000"}), [{"000": "YES"}, {"000": "NO"}, {"000": "W"}]);
@@ -94,7 +94,6 @@ module.exports = testCase({
 
        var result = [{"first name": "james", "gender": 'male', age: 30},
        {"first name": "derek","gender": 'female', age: 28}];
-
 
        test.deepEqual(F.restrict(F.select(F.as(people, {"name": 'first name'}), ['first name', 'gender', 'age']), function(person){
            return person.age > 25;
