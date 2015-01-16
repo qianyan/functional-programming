@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var F = {
+module.exports = {
     select: function(obj, keys) {
         return _.map(obj, function(o) {
             return _.pick.apply(null, [o].concat(keys));
@@ -26,11 +26,10 @@ var F = {
     },
     as: function(args, newNames) {
         return _.map(args, function(obj) {
-            return F.rename(obj, newNames);
-        });
+            return this.rename(obj, newNames);
+        }.bind(this));
     },
     restrict: function(objs, pred) {
         return _.filter(objs, pred);
     }
 };
-module.exports  = F;
