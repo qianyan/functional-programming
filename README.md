@@ -56,3 +56,28 @@ ctr ("Contents of the Tag part of Register number"),
 (define-syntax 
   (syntax-rules () ...))
 ```
+
+## Javascript 
+### Javascript closure
+
+* Free variables - inner function args.
+
+```
+var name = "global";
+
+function varClosestPriciple(name) {
+    return function(name) {
+        console.log(name);
+    };  
+}
+var p = varClosestPriciple();
+p("hello"); //=> hello
+p() //=> undefined
+
+var p1 = varClosestPriciple("world");
+p("hello"); //=> hello
+p(); //=> undefined
+```
+
+
+
