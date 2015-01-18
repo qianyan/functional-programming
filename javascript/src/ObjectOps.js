@@ -31,5 +31,14 @@ module.exports = {
     },
     restrict: function(objs, pred) {
         return _.filter(objs, pred);
+    },
+    repeat: function(times, value) {
+        return _.map(_.range(times), function(){
+            return value;
+        });
+    },
+    repeatedly: function(times, func) {
+        return _.map(_.range(times), func);
     }
+
 };

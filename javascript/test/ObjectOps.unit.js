@@ -100,5 +100,13 @@ module.exports = testCase({
        }), result);
 
        test.done();
+   },
+   "should generate value many times": function(test) {
+       test.deepEqual(F.repeat(3, 'hello'), ['hello', 'hello', 'hello']);
+       test.done();
+   },
+   "should generate with function return value many times": function(test) {
+       test.deepEqual(F.repeatedly(3, function() {return 'hello';}), ['hello', 'hello', 'hello']);
+       test.done();
    }
 });
