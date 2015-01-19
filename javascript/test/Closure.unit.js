@@ -12,5 +12,12 @@ module.exports = testCase({
         test.equal(C.O.inc(2), 3);
         test.equal(C.O.inc(1), 4);
         test.done();
+    },
+    "should make unique string":function(test) {
+        var func = C.mkUniqueString(0);
+        test.equal(func("prefix"), "prefix0");
+        test.equal(func("prefix"), "prefix1");
+        test.equal(func("prefix"), "prefix2");
+        test.done();
     }
 });

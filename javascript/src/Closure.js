@@ -11,5 +11,11 @@ module.exports = {
                 return PRIVATE += num;
             }
         };
-    })()
+    })(),
+    mkUniqueString: function(start) {
+        var COUNTER = start;
+        return function(prefix) {
+            return [prefix, COUNTER++].join('');
+        };
+    }
 };
