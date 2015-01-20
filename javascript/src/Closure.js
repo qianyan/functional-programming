@@ -1,3 +1,4 @@
+var _ = require('underscore');
 module.exports = {
     pluck: function(field) {
         return function(obj) {
@@ -16,6 +17,14 @@ module.exports = {
         var COUNTER = start;
         return function(prefix) {
             return [prefix, COUNTER++].join('');
+        };
+    },
+    fnull: function(func, defaultValue) {
+        return function(memo, n) {
+            var safeArgs = _.map([memo, n], function(arg) {
+                return !_.isNumber(arg) ? defaultValue : arg;
+            });
+            return func.apply(null, safeArgs);
         };
     }
 };
