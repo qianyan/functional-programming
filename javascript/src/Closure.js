@@ -22,7 +22,7 @@ module.exports = {
     fnull: function(func, defaultValue) {
         return function(memo, n) {
             var safeArgs = _.map([memo, n], function(arg) {
-                return !_.isNumber(arg) ? defaultValue : arg;
+                return _.isNull(arg) || _.isUndefined(arg) ? defaultValue : arg;
             });
             return func.apply(null, safeArgs);
         };

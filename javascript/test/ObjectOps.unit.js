@@ -81,7 +81,7 @@ module.exports = testCase({
        test.deepEqual(F.rename(obj, {"001": "000"}), {"000": "YES", "002": "NO", "003": "W"});
        test.done();
    },
-   "should batch rename an array as": function(test) {
+   "should batch rename an array": function(test) {
        var objs = [{"001": "YES"}, {"001": "NO"}, {"001": "W"}];
 
        test.deepEqual(F.as(objs, {"001": "000"}), [{"000": "YES"}, {"000": "NO"}, {"000": "W"}]);
@@ -105,8 +105,8 @@ module.exports = testCase({
        test.deepEqual(F.repeat(3, 'hello'), ['hello', 'hello', 'hello']);
        test.done();
    },
-   "should generate with function return value many times": function(test) {
-       test.deepEqual(F.repeatedly(3, function() {return 'hello';}), ['hello', 'hello', 'hello']);
+   "should repeatly generate value many times": function(test) {
+       test.deepEqual(F.repeatedly(3, function() {return 'hello'}), ['hello', 'hello', 'hello']);
        test.done();
    }
 });

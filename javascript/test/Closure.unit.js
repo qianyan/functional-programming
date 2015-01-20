@@ -22,7 +22,7 @@ module.exports = testCase({
         test.done();
     },
     "should return default values for null": function(test) {
-        var nums = [1, 2, 3, null, 5];
+        var nums = [1, 2, 3, null, undefined, 5];
         var safeMulti = C.fnull(function(memo, n) {return memo * n}, 1);
         test.equal(_.reduce(nums, safeMulti), 30); 
         test.done();
