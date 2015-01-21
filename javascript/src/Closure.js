@@ -26,5 +26,23 @@ module.exports = {
             });
             return func.apply(null, safeArgs);
         };
+    },
+    check: function() {
+        var validators = _.toArray(arguments);
+        return function(obj) {
+            return _.reduce(validators, function(memo, check){
+                if(check(obj)) {
+                    return memo;
+                }
+                return _.chain(memo).push(check.message).value();
+            }, []);
+        }
+    },
+    by: function(func, err) {
+        var f = function(obj) {
+            return func.apply(null, obj);
+        }
+        f.message = err;
+        return f;
     }
 };

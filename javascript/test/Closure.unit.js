@@ -21,10 +21,16 @@ module.exports = testCase({
         test.equal(func("prefix"), "prefix2");
         test.done();
     },
-    "should return default values for null": function(test) {
+    "should replace null with default values": function(test) {
         var nums = [1, 2, 3, null, undefined, 5];
         var safeMulti = C.fnull(function(memo, n) {return memo * n}, 1);
         test.equal(_.reduce(nums, safeMulti), 30); 
+        test.done();
+    },
+    "should check and return message if fail": function(test) {
+        var check = C.check(C.by(function(a){ return !_.isNull(a) && !_.isUndefined(a) },
+                    'cannot be null or undefined'));
+        test.deepEqual(check(null), ['cannot be null or undefined']); 
         test.done();
     }
 });
