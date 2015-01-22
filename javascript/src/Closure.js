@@ -40,6 +40,7 @@ module.exports = {
     },
     by: function(func, err) {
         var f = function(obj) {
+            console.log('by', obj)
             return func.apply(null, obj);
         }
         f.message = err;
