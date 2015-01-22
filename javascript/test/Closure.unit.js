@@ -31,6 +31,7 @@ module.exports = testCase({
         var check = C.check(C.by(function(a){ return !_.isNull(a)},
                     'cannot be null or undefined'));
         test.deepEqual(check(null), ['cannot be null or undefined']); 
+        test.deepEqual(check({}), []); 
         test.done();
     },
     "should check has keys for an object": function(test) {
