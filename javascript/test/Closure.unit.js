@@ -28,7 +28,7 @@ module.exports = testCase({
         test.done();
     },
     "should check and return message if fail": function(test) {
-        var check = C.check(C.by(function(a){ return !_.isNull(a)},
+        var check = C.check(C.by(function(a){ return !_.isNull(a) && !_.isUndefined(a)},
                     'cannot be null or undefined'));
         test.deepEqual(check(null), ['cannot be null or undefined']); 
         test.deepEqual(check({}), []); 
@@ -42,10 +42,12 @@ module.exports = testCase({
                     return _.has(obj, key);
                 }) }}
 
-        var check = C.check(C.by(hasKeys('a', 'b'), 'Must have values for keys: a b'));
+        var check = C.check(C.by(function(a){ return !_.isNull(a) && !_.isUndefined(a)}, 'cannot be null or undefined'),
+                C.by(hasKeys('a', 'b'), 'Must have values for keys: a b'));
 
         test.deepEqual(check({}), ['Must have values for keys: a b']); 
         test.deepEqual(check({a: 'a', b: 'b'}), []); 
+        test.deepEqual(check(null), ['cannot be null or undefined', 'Must have values for keys: a b']); 
         test.done();
     }
 
