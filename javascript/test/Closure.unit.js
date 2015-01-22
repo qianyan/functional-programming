@@ -27,14 +27,12 @@ module.exports = testCase({
         test.equal(_.reduce(nums, safeMulti), 30); 
         test.done();
     },
-        // fail
     "should check and return message if fail": function(test) {
-        var check = C.check(C.by(function(a){ return !_.isNull(a) && !_.isUndefined(a) },
+        var check = C.check(C.by(function(a){ return !_.isNull(a)},
                     'cannot be null or undefined'));
         test.deepEqual(check(null), ['cannot be null or undefined']); 
         test.done();
     },
-        // fail
     "should check has keys for an object": function(test) {
         function hasKeys(){
             var args = _.toArray(arguments);
@@ -46,7 +44,7 @@ module.exports = testCase({
         var check = C.check(C.by(hasKeys('a', 'b'), 'Must have values for keys: a b'));
 
         test.deepEqual(check({}), ['Must have values for keys: a b']); 
-        test.deepEqual(check({a: 'a', b: 'b'}), ['Must have values for keys: a b']); 
+        test.deepEqual(check({a: 'a', b: 'b'}), []); 
         test.done();
     }
 
