@@ -39,6 +39,9 @@ module.exports = {
     },
     repeatedly: function(times, func) {
         return _.map(_.range(times), func);
+    },
+    stringReverse: function(str) {
+        return !_.isString(str) ? undefined : str.split('').reverse().join('');
     }
 
 };

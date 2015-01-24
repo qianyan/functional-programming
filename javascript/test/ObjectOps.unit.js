@@ -108,5 +108,11 @@ module.exports = testCase({
    "should repeatly generate value many times": function(test) {
        test.deepEqual(F.repeatedly(3, function() {return 'hello'}), ['hello', 'hello', 'hello']);
        test.done();
+   },
+   "should reverse string": function(test) {
+       test.equal(F.stringReverse('abc'), 'cba');
+       test.equal(F.stringReverse(1), undefined);
+       test.done();
    }
+
 });
