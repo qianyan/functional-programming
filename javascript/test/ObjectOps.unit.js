@@ -113,6 +113,12 @@ module.exports = testCase({
        test.equal(F.stringReverse('abc'), 'cba');
        test.equal(F.stringReverse(1), undefined);
        test.done();
+   },
+   "should do when expr is true": function(test) {
+       test.ok(F.doWhen(true, function(){return true}))
+       test.ok(F.doWhen(0 < 1, function(){return true}))
+       test.done();
    }
+
 
 });

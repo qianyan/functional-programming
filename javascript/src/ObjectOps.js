@@ -42,6 +42,10 @@ module.exports = {
     },
     stringReverse: function(str) {
         return !_.isString(str) ? undefined : str.split('').reverse().join('');
+    },
+    doWhen: function(expr, fun) {
+        if(expr) {
+           return fun.apply(null);
+        }
     }
-
 };
