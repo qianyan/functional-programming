@@ -44,5 +44,15 @@ module.exports = {
         }
         f.message = err;
         return f;
+    },
+    invoker: function(name, method) {
+        return function(target) {
+            if(!target) fail('must provide a target');
+
+            var aMethod = target[name];
+            if(aMethod && method === aMethod) {
+                return aMethod.apply(target)
+            }
+        }
     }
 };

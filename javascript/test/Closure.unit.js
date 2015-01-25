@@ -49,6 +49,11 @@ module.exports = testCase({
         test.deepEqual(check({a: 'a', b: 'b'}), []); 
         test.deepEqual(check(null), ['cannot be null or undefined', 'Must have values for keys: a b']); 
         test.done();
+    },
+    "should invoke method": function(test) {
+        var rev =  C.invoker('reverse', Array.prototype.reverse);
+        var result = rev([1, 2, 3])
+        test.deepEqual(result, [3, 2, 1]);
+        test.done();
     }
-
 });

@@ -119,6 +119,4 @@ module.exports = testCase({
        test.ok(F.doWhen(0 < 1, function(){return true}))
        test.done();
    }
-
-
 });
