@@ -54,5 +54,16 @@ module.exports = {
                 return aMethod.apply(target)
             }
         }
+    },
+    dispatch: function() {
+        var funcs = _.toArray(arguments);
+        return function(target) {
+            for(var i=0; i<funcs.length; i++) {
+                var ret = funcs[i].apply(null, [target]); 
+                if(!_.isEmpty(ret)) {
+                    return ret;
+                }
+            }
+        };
     }
 };

@@ -55,5 +55,14 @@ module.exports = testCase({
         var result = rev([1, 2, 3])
         test.deepEqual(result, [3, 2, 1]);
         test.done();
+    },
+    "should dispatch different methods": function(test) {
+        var str = C.dispatch(C.invoker('toString', String.prototype.toString),
+                C.invoker('toString', Array.prototype.toString));
+
+        test.equal(str('abc'), 'abc');
+        test.equal(str([1, 2, 3]), '1,2,3');
+        test.done();
     }
+
 });
