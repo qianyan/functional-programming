@@ -63,6 +63,13 @@ module.exports = testCase({
         test.equal(str('abc'), 'abc');
         test.equal(str([1, 2, 3]), '1,2,3');
         test.done();
-    }
+    },
+    "should curry left": function(test) {
+        var divide10By = C.leftCurryDiv(10);
+        var divideBy10 = C.rightCurryDiv(10);
 
+        test.equal(divide10By(5), 2);
+        test.equal(divideBy10(20), 2);
+        test.done();
+    }
 });

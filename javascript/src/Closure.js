@@ -65,5 +65,15 @@ module.exports = {
                 }
             }
         };
+    },
+    leftCurryDiv: function(n) {
+        return function(d) {
+            return n / d;
+        };
+    },
+    rightCurryDiv: function(d) {
+        return function(n) {
+            return n / d;
+        };
     }
 };
