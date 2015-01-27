@@ -71,5 +71,9 @@ module.exports = testCase({
         test.equal(divide10By(5), 2);
         test.equal(divideBy10(20), 2);
         test.done();
+    }, 
+    "2 level curry": function(test) {
+        test.deepEqual(['11','11','11','11'].map(C.curry2(parseInt)), [11, 11, 11, 11]);
+        test.done();
     }
 });

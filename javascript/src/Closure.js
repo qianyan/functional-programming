@@ -75,5 +75,10 @@ module.exports = {
         return function(n) {
             return n / d;
         };
+    },
+    curry2: function(func) {
+        return function(arg) {
+            return func(arg);
+        };
     }
 };
