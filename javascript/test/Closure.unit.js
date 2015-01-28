@@ -73,6 +73,7 @@ module.exports = testCase({
         test.done();
     }, 
     "2 level curry": function(test) {
+        test.notDeepEqual(['11','11','11','11'].map(parseInt), [111, 11, 11, 11]);
         test.deepEqual(['11','11','11','11'].map(C.curry2(parseInt)), [11, 11, 11, 11]);
         test.done();
     }
