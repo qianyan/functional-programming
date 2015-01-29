@@ -72,9 +72,24 @@ module.exports = testCase({
         test.equal(divideBy10(20), 2);
         test.done();
     }, 
-    "2 level curry": function(test) {
+    "curry": function(test) {
         test.notDeepEqual(['11','11','11','11'].map(parseInt), [111, 11, 11, 11]);
-        test.deepEqual(['11','11','11','11'].map(C.curry2(parseInt)), [11, 11, 11, 11]);
+        test.deepEqual(['11','11','11','11'].map(C.curry(parseInt)), [11, 11, 11, 11]);
+        test.done();
+    },
+    "curry2 with function parameters": function(test) {
+        var peopleCount = C.curry2(_.countBy)(function nameWithGender(person){
+            return [person.name, person.gender].join('-');
+        });
+
+        var people = [{name: 'A', gender: 'male'}, {name: 'B', gender: 'male'},{name: 'A', gender: 'male'},{name: 'A', gender: 'female'}];
+
+        var expected = {'A-male': 2,
+            'B-male': 1,
+            'A-female': 1
+        };
+        var result = peopleCount(people);
+        test.deepEqual(result, expected);
         test.done();
     }
 });

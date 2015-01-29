@@ -76,9 +76,17 @@ module.exports = {
             return n / d;
         };
     },
-    curry2: function(func) {
+    curry: function(func) {
         return function(arg) {
             return func(arg);
         };
+    },
+    curry2: function(func) {
+        return function(secondArg) {
+            return function(firstArg) {
+                return func(firstArg, secondArg);
+            };
+        };
     }
+
 };
