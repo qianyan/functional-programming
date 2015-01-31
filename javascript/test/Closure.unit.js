@@ -91,5 +91,18 @@ module.exports = testCase({
         var result = peopleCount(people);
         test.deepEqual(result, expected);
         test.done();
+    },
+    "partial - preconditions": function(test) {
+        var zero = C.by(function(n) {return 0 === n}, 'cannot be zero');
+
+        function sqr(n)  {
+            if(zero(n)) throw new Error(zero.message);
+
+            return n * n;
+        }
+
+        test.equal(sqr(2), 4);
+        test.throws(function(){sqr(0)}, 'cannot be zero');
+        test.done();
     }
 });
