@@ -117,6 +117,8 @@ module.exports = testCase({
    "should do when expr is true": function(test) {
        test.ok(F.doWhen(true, function(){return true}))
        test.ok(F.doWhen(0 < 1, function(){return true}))
+       test.ok(F.doWhen(true, function(){return true}) ||
+               F.doWhen(0 < 1, function(){return true}));
        test.done();
    }
 });
