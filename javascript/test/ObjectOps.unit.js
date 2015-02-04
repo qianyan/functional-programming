@@ -32,6 +32,24 @@ module.exports = testCase({
         test.deepEqual(actual, expected);
         test.done();
     },
+    "should reduce an array to an object - 1": function (test) {
+        var array = ['YES', 'NO', 'W'];
+        var actual = _.object(['001', '002', '003'], array);
+        var expected = {"001": "YES", "002": "NO", "003": "W"};
+
+        test.deepEqual(actual, expected);
+        test.done();
+    },
+    "should reduce an array to an object - 2": function (test) {
+        var array = ['YES', 'NO', 'W'];
+        var actual = _.object(_.map(array, function(v, i){
+            return ['00' + (i+1), v];
+        }));
+        var expected = {"001": "YES", "002": "NO", "003": "W"};
+
+        test.deepEqual(actual, expected);
+        test.done();
+    },
     "should reduce right an array to an object": function (test) {
         var array = ['YES', 'NO', 'W'];
 
