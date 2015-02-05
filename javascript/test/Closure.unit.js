@@ -104,5 +104,10 @@ module.exports = testCase({
         test.equal(sqr(2), 4);
         test.throws(function(){sqr(0)}, 'cannot be zero');
         test.done();
+    },
+    "partial - compose": function(test) {
+        test.ok(_.compose(function(x) {return !x}, _.isString)([]));
+        test.done();
     }
+
 });
