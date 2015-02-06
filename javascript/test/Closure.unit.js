@@ -106,8 +106,20 @@ module.exports = testCase({
         test.done();
     },
     "partial - compose": function(test) {
-        test.ok(_.compose(function(x) {return !x}, _.isString)([]));
+        var not = function(x) {return !x;}
+        test.ok(_.compose(not, _.isString)([]));
+        test.done();
+    },
+    "partial - compose mapcat": function(test) {
+        var irregularArr = [[1,2], [3], [0, 4, 5]];
+        function cat() {
+            var array = _.first(arguments);
+            var head = _.first(array);
+            return head.concat.apply(head, _.rest(array));
+        }
+
+        var magicFunc = _.compose(cat, _.map);
+        test.deepEqual(magicFunc(irregularArr, _.identity), [1,2,3,0,4,5]);
         test.done();
     }
-
 });
