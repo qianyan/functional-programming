@@ -88,17 +88,15 @@ module.exports = {
             };
         };
     },
-    cycle: function(times, arr) {
-        function cat(){
-            var head = _.first(arguments);
+    cat: function(){
+        var head = _.first(arguments);
 
-            return head.concat.apply(head, _.rest(arguments));
+        return head.concat.apply(head, _.rest(arguments));
+    },
+    cycle: function(times, arr) {
+        if(times <= 0) {
+            return [];
         }
-        return  (function f(n, a){
-            if(n <= 0) {
-                return [];
-            }
-            return cat(arr, f(n-1, a));
-        })(times, arr);
+        return this.cat(arr, this.cycle(times-1, arr));
     }
 };
