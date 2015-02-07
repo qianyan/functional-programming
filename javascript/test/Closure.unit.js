@@ -121,5 +121,10 @@ module.exports = testCase({
         var magicFunc = _.compose(cat, _.map);
         test.deepEqual(magicFunc(irregularArr, _.identity), [1,2,3,0,4,5]);
         test.done();
+    },
+    "recursion - cycle": function(test) {
+        var result = C.cycle(3, [1, 2]);
+        test.deepEqual(result, [1, 2, 1, 2, 1, 2]);
+        test.done();
     }
 });

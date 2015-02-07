@@ -87,6 +87,18 @@ module.exports = {
                 return func(firstArg, secondArg);
             };
         };
-    }
+    },
+    cycle: function(times, arr) {
+        function cat(){
+            var head = _.first(arguments);
 
+            return head.concat.apply(head, _.rest(arguments));
+        }
+        return  (function f(n, a){
+            if(n <= 0) {
+                return [];
+            }
+            return cat(arr, f(n-1, a));
+        })(times, arr);
+    }
 };
