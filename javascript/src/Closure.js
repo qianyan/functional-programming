@@ -98,5 +98,8 @@ module.exports = {
             return [];
         }
         return this.cat(arr, this.cycle(times-1, arr));
+    },
+    unzip: function(arr) {
+        return _.zip.apply(_, arr);
     }
 };
