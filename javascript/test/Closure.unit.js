@@ -127,7 +127,7 @@ module.exports = testCase({
         test.deepEqual(result, [1, 2, 1, 2, 1, 2]);
         test.done();
     },
-    "recursion - unzip": function(test) {
+    "funny - unzip": function(test) {
         var result = C.unzip(_.zip([1, 2], ['a', 'b']));
         test.deepEqual(result, [[1, 2], ['a', 'b']]);
         test.done();
