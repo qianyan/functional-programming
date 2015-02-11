@@ -11,3 +11,5 @@ out
 # javascript
 node_modules
 
+# sourcegraph
+.srclib-cache/
