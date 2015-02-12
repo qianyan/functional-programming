@@ -101,5 +101,13 @@ module.exports = {
     },
     unzip: function(arr) {
         return _.zip.apply(_, arr);
+    },
+    flat: function(arr) {
+        if(_.isArray(arr)) {
+           return this.cat.apply(null, _.map(arr, function(e){
+               return this.flat.call(this, e);
+           }.bind(this)));
+        }
+        return [arr];
     }
 };

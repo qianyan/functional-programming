@@ -131,5 +131,10 @@ module.exports = testCase({
         var result = C.unzip(_.zip([1, 2], ['a', 'b']));
         test.deepEqual(result, [[1, 2], ['a', 'b']]);
         test.done();
+    },
+    "flat": function(test){
+        var result = C.flat([[1,2,3], [4,5],[[6,7]]]);
+        test.deepEqual(result, [1,2,3,4,5,6,7]);
+        test.done();
     }
 });
