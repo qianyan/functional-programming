@@ -109,5 +109,19 @@ module.exports = {
            }.bind(this)));
         }
         return [arr];
+    },
+    deepClone: function(obj){
+        if(!_.isObject(obj)) {
+            return obj;
+        }
+
+        var temp = new obj.constructor();
+        for(var key in obj) {
+            if(obj.hasOwnProperty(key)) {
+                temp[key] = this.deepClone(obj[key]);
+            }
+        }
+
+        return temp;
     }
 };

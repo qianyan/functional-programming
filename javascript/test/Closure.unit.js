@@ -136,5 +136,12 @@ module.exports = testCase({
         var result = C.flat([[1,2,3], [4,5],[[6,7]]]);
         test.deepEqual(result, [1,2,3,4,5,6,7]);
         test.done();
+    },
+    "deep clone": function(test) {
+        var x = {a: {b: {d: []}}};
+        var y = C.deepClone(x);
+        y.a.b.d = {};
+        test.ok(!_.isEqual(x,y));
+        test.done();
     }
 });
