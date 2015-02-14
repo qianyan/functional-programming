@@ -123,5 +123,11 @@ module.exports = {
         }
 
         return temp;
+    },
+    visit: function(mapFunc, resultFunc, arr) {
+        if(!_.isArray(arr)) {
+            return resultFunc(arr);
+        }
+        return resultFunc(_.map(arr, mapFunc));
     }
 };

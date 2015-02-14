@@ -143,5 +143,9 @@ module.exports = testCase({
         y.a.b.d = {};
         test.ok(!_.isEqual(x,y));
         test.done();
+    },
+    "visit for array": function(test) {
+        test.deepEqual(C.visit(_.isNumber, _.identity, [1, null, 2]), [true, false, true]);
+        test.done();
     }
 });
