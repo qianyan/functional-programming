@@ -127,7 +127,7 @@ module.exports = testCase({
         test.deepEqual(result, [1, 2, 1, 2, 1, 2]);
         test.done();
     },
-    "funny - unzip": function(test) {
+    "unzip": function(test) {
         var result = C.unzip(_.zip([1, 2], ['a', 'b']));
         test.deepEqual(result, [[1, 2], ['a', 'b']]);
         test.done();
@@ -144,7 +144,7 @@ module.exports = testCase({
         test.ok(!_.isEqual(x,y));
         test.done();
     },
-    "visit for array": function(test) {
+    "visit in an array": function(test) {
         test.deepEqual(C.visit(_.isNumber, _.identity, [1, null, 2]), [true, false, true]);
         test.done();
     }
