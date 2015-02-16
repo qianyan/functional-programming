@@ -129,5 +129,12 @@ module.exports = {
             return resultFunc(arr);
         }
         return resultFunc(_.map(arr, mapFunc));
+    },
+    generator: function(seed, current, step) {
+        return {
+            head: current(seed),
+            tail: function(){return this.generator(step(seed), current, step)}
+            .bind(this)
+        };
     }
 };

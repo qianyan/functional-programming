@@ -147,5 +147,11 @@ module.exports = testCase({
     "visit in an array": function(test) {
         test.deepEqual(C.visit(_.isNumber, _.identity, [1, null, 2]), [true, false, true]);
         test.done();
+    },
+    "generator": function(test) {
+        var ints = C.generator(0, _.identity, function(n) {return n+1});
+        test.equal(ints.head, 0);
+        test.equal(ints.tail().head, 1);
+        test.done();
     }
 });
