@@ -153,5 +153,10 @@ module.exports = testCase({
         test.equal(ints.head, 0);
         test.equal(ints.tail().head, 1);
         test.done();
-    }
+    },
+   "partial - random": function(test) {
+       var rand = C.partial(_.random, 1);
+       test.ok(rand(10) <= 10 && rand(10) > 0)
+       test.done();
+   }
 });

@@ -136,5 +136,11 @@ module.exports = {
             tail: function(){return this.generator(step(seed), current, step)}
             .bind(this)
         };
+    },
+    partial: function(func, arg) {
+        return function() {
+            var args = [arg].concat(_.toArray(arguments));
+            return func.apply(func, args);
+        }
     }
 };
