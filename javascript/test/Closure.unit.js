@@ -158,5 +158,11 @@ module.exports = testCase({
        var rand = C.partial(_.random, 1);
        test.ok(rand(10) <= 10 && rand(10) > 0)
        test.done();
+   },
+    "partial - rand string": function(test) {
+       var rand = C.partial(_.random, 1);
+       test.ok(_.isString(rand(10).toString(36)));
+       test.done();
    }
+
 });
