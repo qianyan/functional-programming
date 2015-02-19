@@ -162,7 +162,12 @@ module.exports = testCase({
     "partial - rand string": function(test) {
        var rand = C.partial(_.random, 1);
        test.ok(_.isString(rand(10).toString(36)));
+       test.ok(_.every(rand(10).toString(36), function(ch) {
+           return /[a-z0-9]/.test(ch);
+       }));
+       test.ok(!_.any(rand(10).toString(36), function(ch) {
+           return /A-Z/.test(ch);
+       }));
        test.done();
    }
-
 });
