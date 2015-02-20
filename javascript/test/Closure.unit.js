@@ -169,5 +169,10 @@ module.exports = testCase({
            return /A-Z/.test(ch);
        }));
        test.done();
+   },
+   "idempotence": function(test) {
+       test.equal(_.identity(1), _.identity(_.identity(1)));
+       test.equal(Math.abs(-1), Math.abs(Math.abs(-1)));
+       test.done();
    }
 });
