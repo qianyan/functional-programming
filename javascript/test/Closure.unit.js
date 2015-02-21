@@ -174,5 +174,9 @@ module.exports = testCase({
        test.equal(_.identity(1), _.identity(_.identity(1)));
        test.equal(Math.abs(-1), Math.abs(Math.abs(-1)));
        test.done();
+   },
+   "skip take": function(test) {
+       test.deepEqual(C.skipTake(2, _.range(1,5)), [1,3]);
+       test.done();
    }
 });

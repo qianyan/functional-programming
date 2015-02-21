@@ -142,5 +142,10 @@ module.exports = {
             var args = [arg].concat(_.toArray(arguments));
             return func.apply(func, args);
         }
+    },
+    skipTake: function(n, arr) {
+        return _.filter(arr, function(value, index){
+            return index % n === 0;
+        });
     }
 };
