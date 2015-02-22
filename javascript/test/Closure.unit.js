@@ -178,5 +178,14 @@ module.exports = testCase({
    "skip take": function(test) {
        test.deepEqual(C.skipTake(2, _.range(1,5)), [1,3]);
        test.done();
+   },
+   "object freeze": function(test) {
+       var x = [1, 2];
+       Object.freeze(x);
+       x[0] = 10;
+
+       test.ok(Object.isFrozen(x));
+       test.deepEqual(x, [1,2]);
+       test.done();
    }
 });
