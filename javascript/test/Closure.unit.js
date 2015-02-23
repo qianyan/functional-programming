@@ -187,5 +187,11 @@ module.exports = testCase({
        test.ok(Object.isFrozen(x));
        test.deepEqual(x, [1,2]);
        test.done();
+   },
+   "freq": function(test) {
+       var data = [1, 2, 1];
+       var expected = {1: 2, 2: 1};
+       test.deepEqual(C.curry2(_.countBy)(_.identity)(data), expected);
+       test.done();
    }
 });
