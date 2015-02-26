@@ -193,5 +193,9 @@ module.exports = testCase({
        var expected = {1: 2, 2: 1};
        test.deepEqual(C.curry2(_.countBy)(_.identity)(data), expected);
        test.done();
+   },
+   "pipeline": function(test) {
+       test.deepEqual(C.pipeline([1,3,null, 42], _.compact, _.initial), [1,3]);
+       test.done();
    }
 });

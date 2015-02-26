@@ -147,5 +147,10 @@ module.exports = {
         return _.filter(arr, function(value, index){
             return index % n === 0;
         });
+    },
+    pipeline: function(seed) {
+        return _.reduce(_.rest(arguments), function(r, f) {
+            return f(r);
+        }, seed);
     }
 };
