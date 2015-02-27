@@ -196,6 +196,7 @@ module.exports = testCase({
    },
    "pipeline": function(test) {
        test.deepEqual(C.pipeline([1,3,null, 42], _.compact, _.initial), [1,3]);
+       test.equal(C.pipeline([1,2,3,4], _.rest, _.first), 2);
        test.done();
    }
 });
