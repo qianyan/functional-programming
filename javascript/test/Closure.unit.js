@@ -24,7 +24,9 @@ module.exports = testCase({
     "should replace null with default values": function(test) {
         var nums = [1, 2, 3, null, undefined, 5];
         var safeMulti = C.fnull(function(memo, n) {return memo * n}, 1);
+        var safeAdd = C.fnull(function(memo, n) {return memo + n}, 0);
         test.equal(_.reduce(nums, safeMulti), 30); 
+        test.equal(_.reduce(nums, safeAdd), 11); 
         test.done();
     },
     "should check and return message if fail": function(test) {
