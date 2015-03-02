@@ -129,6 +129,7 @@ module.exports = testCase({
    },
    "should reverse string": function(test) {
        test.equal(F.stringReverse('abc'), 'cba');
+       test.equal(F.stringReverse('a'), 'a');
        test.equal(F.stringReverse(1), undefined);
        test.done();
    },
