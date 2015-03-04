@@ -152,5 +152,12 @@ module.exports = {
         return _.reduce(_.rest(arguments), function(r, f) {
             return f(r);
         }, seed);
+    },
+    actions: function(acts, done) {
+        return function(value) {
+            return done(_.reduce(acts, function(r, f) {
+                return r.concat(f(_.last(r)));
+            }, [value]));
+        };
     }
 };

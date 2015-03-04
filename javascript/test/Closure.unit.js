@@ -202,5 +202,13 @@ module.exports = testCase({
        test.equal(C.pipeline([1,2,3,4], _.rest, _.first, function(n){return -n;}), -2);
        test.ok(_.isUndefined(C.pipeline([1,2,3,4], _.rest, _.first, function(n){console.log(n)})));
        test.done();
+   },
+   "actions": function(test) {
+       var doubleFunc = function(value){return value * 2}
+       var doubleActions = C.actions([doubleFunc, doubleFunc], function(values) {
+           return _.rest(values);
+       });
+       test.deepEqual(doubleActions(10), [20, 40]);
+       test.done();
    }
 });
