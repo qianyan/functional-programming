@@ -209,6 +209,7 @@ module.exports = testCase({
            return _.rest(values);
        });
        test.deepEqual(doubleActions(10), [20, 40]);
+       test.deepEqual(C.actions([function(v){return v * 2}], function(values) {return values})(10), [10, 20]);
        test.done();
    }
 });
