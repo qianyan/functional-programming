@@ -47,5 +47,23 @@ module.exports = {
         if(expr) {
            return fun.apply(null);
         }
+    },
+    lazyChain: function(obj) {
+        this._calls = [];
+        this._target = obj;
+        this.invoke = function(methodName) {
+            var args = _.rest(arguments);
+            this._calls.push(function(target) {
+                var executor = target[methodName];
+                return executor.apply(target, args);
+            });
+            return this;
+        };
+        
+        this.fire = function() {
+            return _.reduce(this._calls, function(v, f) {
+                return f(v);
+            }, this._target);
+        };
     }
 };
