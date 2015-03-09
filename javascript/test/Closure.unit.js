@@ -204,7 +204,7 @@ module.exports = testCase({
        test.done();
    },
    "actions": function(test) {
-       var doubleFunc = function(value){return value * 2}
+       var doubleFunc = function(value){return value * 2};
        var doubleActions = C.actions([doubleFunc, doubleFunc], function(values) {
            return _.rest(values);
        });
