@@ -151,7 +151,12 @@ module.exports = testCase({
    },
    "should init array with empty string": function(test) {
        var arr = new Array(3).join(',').split(',');
+       var newArr = new Array(3 - 1);
+       newArr.push('hello');
+       var arr2 = newArr.join('hello,').split(',');
+
        test.deepEqual(arr, ['', '', '']);
+       test.deepEqual(arr2, ['hello', 'hello', 'hello']);
        test.done();
    }
 });
