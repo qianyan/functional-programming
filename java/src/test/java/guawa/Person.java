@@ -1,8 +1,10 @@
 package guawa;
 
 import com.google.common.base.MoreObjects;
+import lombok.Getter;
 
 public class Person {
+    @Getter
     private String name;
     private String gender;
 
