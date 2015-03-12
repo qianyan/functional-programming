@@ -110,6 +110,7 @@ module.exports = testCase({
     "partial - compose": function(test) {
         var not = function(x) {return !x;}
         test.ok(_.compose(not, _.isString)([]));
+        test.ok(!_.compose(not, _.isString)(''));
         test.done();
     },
     "partial - compose mapcat": function(test) {
