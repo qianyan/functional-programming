@@ -1,5 +1,7 @@
 var testCase  = require('nodeunit').testCase;
 var C = require('../src/Closure');
+var F = require('../src/ObjectOps');
+
 var _ = require('underscore');
 
 module.exports = testCase({
@@ -206,11 +208,11 @@ module.exports = testCase({
    },
    "actions": function(test) {
        var doubleFunc = function(value){return value * 2};
-       var doubleActions = C.actions([doubleFunc, doubleFunc], function(values) {
+       var doubleActions = C.actions(F.repeat(2, doubleFunc), function(values) {
            return _.rest(values);
        });
-       test.deepEqual(C.actions([function(v){return v * 2}], function(values) {return values})(10), [10, 20]);
-       test.deepEqual(C.actions([function(v){return v * 2}], function(values) {console.log(values)})(10), undefined);
+       test.deepEqual(C.actions([doubleFunc], function(values) {return values})(10), [10, 20]);
+       test.deepEqual(C.actions([doubleFunc], function(values) {console.log(values)})(10), undefined);
        test.deepEqual(doubleActions(10), [20, 40]);
        test.done();
    }
