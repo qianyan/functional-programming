@@ -150,6 +150,10 @@ module.exports = testCase({
        test.done();
    },
    "should sort multiple arrays": function(test) {
+       var sortedArray = _.map([[1, 3, 2], [4, 5, 3], [7, 100, 8]], function(arr) {
+           return new F.lazyChain(arr).invoke('sort', function(a, b){return a - b}).fire();
+       });
+       test.deepEqual(sortedArray, [[1, 2, 3], [3, 4, 5], [7, 8, 100]]);
        test.done();
    },
    "should init array with empty string": function(test) {
