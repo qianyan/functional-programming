@@ -149,6 +149,9 @@ module.exports = testCase({
        test.equal(actualString, '1,2,3');
        test.done();
    },
+   "should sort multiple arrays": function(test) {
+       test.done();
+   },
    "should init array with empty string": function(test) {
        var arr = new Array(3).join(',').split(',');
        var newArr = new Array(3 - 1);
