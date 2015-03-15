@@ -140,12 +140,12 @@ module.exports = testCase({
        test.done();
    },
    "should sort an array with lazyChain": function(test) {
-       var toSort = new F.lazyChain([1, 3, 2]).invoke('sort');
+       var toSort = new F.lazyChain([1, 20, 3]).invoke('sort', function(a, b){return a - b;});
        var actual = toSort.fire();
 
        var toString = new F.lazyChain([1, 3, 2]).invoke('sort').invoke('toString');
        var actualString = toString.fire();
-       test.deepEqual(actual, [1, 2, 3]);
+       test.deepEqual(actual, [1, 3, 20]);
        test.equal(actualString, '1,2,3');
        test.done();
    },
