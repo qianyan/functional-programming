@@ -215,5 +215,16 @@ module.exports = testCase({
        test.deepEqual(C.actions([doubleFunc], function(values) {console.log(values)})(10), undefined);
        test.deepEqual(doubleActions(10), [20, 40]);
        test.done();
+   },
+   "mixin": function(test) {
+       var mixin = {
+           swap: function(fun) {
+               return fun.apply(this, [this._value].concat(_.rest(arguments)));
+           }
+       };
+       var o = {_value: 0};
+       _.extend(o, mixin);
+       test.deepEqual(o.swap(function(a, b) {[a].concat(b), [1,2,3]}, [0,1,2,3]));
+       test.done();
    }
 });
