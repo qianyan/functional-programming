@@ -156,7 +156,7 @@ module.exports = testCase({
        test.deepEqual(sortedArray, [[1, 2, 3], [3, 4, 5], [7, 8, 100]]);
        test.done();
    },
-   "should init array with empty string": function(test) {
+   "should init array with empty string or special string": function(test) {
        var arr = new Array(3).join(',').split(',');
        var newArr = new Array(3 - 1);
        newArr.push('hello');
