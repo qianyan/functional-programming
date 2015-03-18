@@ -121,6 +121,9 @@ module.exports = testCase({
    },
    "should generate value many times": function(test) {
        test.deepEqual(F.repeat(3, 'hello'), ['hello', 'hello', 'hello']);
+       var func = function(){
+       };
+       test.deepEqual(F.repeat(3, func), [func, func, func]);
        test.done();
    },
    "should repeatly generate value many times": function(test) {
