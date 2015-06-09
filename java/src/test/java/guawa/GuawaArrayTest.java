@@ -91,4 +91,9 @@ public class GuawaArrayTest {
         assertThat(GuawaArray.uniq(_a(1, 2, 2, 3, 4, 2, 5)), is(_a(1, 2, 3, 4, 5)));
     }
 
+    @Test
+    public void flatten() throws Exception {
+        assertThat(GuawaArray.flatten(_a(1, 2), _a(3, 4), _a(5, 6)), is(_a(1, 2, 3, 4, 5, 6)));
+        assertThat(GuawaArray.flatten(_a(1, null), _a(3, 4), _a(5, 6)), is(_a(1, 3, 4, 5, 6)));
+    }
 }

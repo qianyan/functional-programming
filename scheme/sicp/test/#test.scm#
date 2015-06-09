@@ -4,7 +4,7 @@
 
 (load "../src/p96-symbol-data.scm")
 
-;;; symbol data tests
+(define c)
 (define-test-suite symbol-data
   (define-test should-make-elements-equal
     (assert-true (elements-equal '(1) '(1))))

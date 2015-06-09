@@ -4,11 +4,11 @@
         ((eq? a (car l)) (cdr l))
         (else (cons (car l)
                     (rember a (cdr l))))))
-
-;;;
+;;; first of all pair
 (define (firsts l)
   (if (null? l) '()
-      (cons (car (if (pair? (car l)) (car l)
+      (cons (car (if (pair? (car l))
+                     (car l)
                      (list (car l))))
             (firsts (cdr l)))))
 
@@ -90,7 +90,6 @@
               (same-parity-recurisive (car bs) (cdr bs)))))
   (same-parity-recurisive x l))
 
-
 (define (foreach proc l)
   (if (not (null? l))
       (foreach ((lambda (x) proc) (proc (car l))) (cdr l))))
@@ -101,7 +100,6 @@
         #t
         (recur (proc (car ls)) (cdr ls))))
   (recur 'everthing l))
-
 
 (define (for-each proc l)
   (if (null? l)

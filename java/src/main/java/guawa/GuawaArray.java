@@ -1,14 +1,18 @@
 package guawa;
 
 import com.google.common.base.Function;
+import com.google.common.base.Optional;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
 import java.util.*;
 
+import static com.google.common.base.Optional.fromNullable;
+import static com.google.common.base.Optional.presentInstances;
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Predicates.not;
 import static com.google.common.collect.FluentIterable.of;
+import static com.google.common.collect.Iterables.transform;
 import static guawa.Converter._l;
 import static guawa.Converter._s;
 
@@ -93,4 +97,19 @@ public class GuawaArray {
         }
         return (T[]) list.toArray();
     }
+
+    public static <T> T[] flatten(T[]... arrays) {
+        return of(arrays).transformAndConcat(new Function<T[], Iterable<T>>() {
+            @Override
+            public Iterable<T> apply(T[] input) {
+                return presentInstances(transform(_l(input), new Function<T, Optional<? extends T>>() {
+                    @Override
+                    public Optional<? extends T> apply(T input) {
+                        return fromNullable(input);
+                    }
+                }));
+            }
+        }).toArray((Class<T>) Object.class);
+    }
+
 }
