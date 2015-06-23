@@ -43,13 +43,13 @@ public class GuawaArrayTest {
             public boolean apply(Integer input) {
                 return input % 2 == 0;
             }
-        }), is(_a(1, 3, 5)));
+        }, Integer.class), is(_a(1, 3, 5)));
     }
 
     @Test
     public void compact() throws Exception {
-        assertThat(GuawaArray.compact(_a(1, null, 2, 3, 4)), is(_a(1, 2, 3, 4)));
-        assertThat(GuawaArray.compact(_a("1", null, "2", "3", "4")), is(_a("1", "2", "3", "4")));
+        assertThat(GuawaArray.compact(_a(1, null, 2, 3, 4), Integer.class), is(_a(1, 2, 3, 4)));
+        assertThat(GuawaArray.compact(_a("1", null, "2", "3", "4"), String.class), is(_a("1", "2", "3", "4")));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class GuawaArrayTest {
 
     @Test
     public void flatten() throws Exception {
-        assertThat(GuawaArray.flatten(_a(1, 2), _a(3, 4), _a(5, 6)), is(_a(1, 2, 3, 4, 5, 6)));
-        assertThat(GuawaArray.flatten(_a(1, null), _a(3, 4), _a(5, 6)), is(_a(1, 3, 4, 5, 6)));
+        assertThat(GuawaArray.flatten(Integer.class, _a(1, 2), _a(3, 4), _a(5, 6)), is(_a(1, 2, 3, 4, 5, 6)));
+        assertThat(GuawaArray.flatten(Integer.class, _a(1, null), _a(3, 4), _a(5, 6)), is(_a(1, 3, 4, 5, 6)));
     }
 }

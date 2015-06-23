@@ -22,11 +22,12 @@ public class GuawaArray {
     }
 
     public static <T> T[] tail(T[] args) {
-        return (T[]) _l(args).subList(1, args.length).toArray();
+        return _l(args).subList(1, args.length).toArray(Arrays.copyOf(args, args.length-1));
     }
 
     public static <T> T[] uniq(T[] args) {
-        return (T[]) _s(args).toArray();
+        Set<T> ts = _s(args);
+        return ts.toArray(Arrays.copyOf(args, ts.size()));
     }
 
     public static <T> int indexOf(T[] args, final T arg) {
@@ -45,7 +46,7 @@ public class GuawaArray {
     public static <T> T[] shuffle(T[] args) {
         List<T> list = _l(args);
         Collections.shuffle(list);
-        return (T[]) list.toArray();
+        return list.toArray(args);
     }
 
     public static <T> T[] initial(T[] args, int lastCount) {
@@ -70,21 +71,21 @@ public class GuawaArray {
         return copyOfArgs;
     }
 
-    public static <T> T[] reject(T[] args, Predicate<T> predicate) {
-        return of(args).filter(not(predicate)).toArray((Class<T>) Object.class);
+    public static <T> T[] reject(T[] args, Predicate<T> predicate, Class<T> type) {
+        return of(args).filter(not(predicate)).toArray(type);
     }
 
     public static int random(int start, int end) {
         return new Random().nextInt(end - start) + start;
     }
 
-    public static <T> T[] compact(T[] arr) {
+    public static <T> T[] compact(T[] arr, Class<T> type) {
         return of(arr).filter(new Predicate<T>() {
             @Override
             public boolean apply(T a) {
                 return a != null;
             }
-        }).toArray((Class<T>) Object.class);
+        }).toArray(type);
     }
 
     public static <T> T[] without(T[] args, T... without) {
@@ -95,10 +96,10 @@ public class GuawaArray {
                 list.add(arg);
             }
         }
-        return (T[]) list.toArray();
+        return list.toArray(Arrays.copyOf(args, list.size()));
     }
 
-    public static <T> T[] flatten(T[]... arrays) {
+    public static <T> T[] flatten(Class<T> type, T[]... arrays) {
         return of(arrays).transformAndConcat(new Function<T[], Iterable<T>>() {
             @Override
             public Iterable<T> apply(T[] input) {
@@ -109,7 +110,7 @@ public class GuawaArray {
                     }
                 }));
             }
-        }).toArray((Class<T>) Object.class);
+        }).toArray(type);
     }
 
 }
