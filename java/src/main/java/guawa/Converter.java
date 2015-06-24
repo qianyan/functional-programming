@@ -11,6 +11,7 @@ public class Converter {
         return args;
     }
 
+    @SafeVarargs
     public static <T> List<T> _l(T... args) {
         return Arrays.asList(args);
     }
