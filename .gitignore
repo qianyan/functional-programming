@@ -1,7 +1,6 @@
 # java
 .gradle
 .idea
-gradle
 build
 out
 *.ipr
