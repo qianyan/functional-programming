@@ -8,9 +8,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import static guawa.Converter._a;
-import static guawa.Converter._l;
-import static guawa.Converter._s;
+import static guawa.Converter.*;
 import static guawa.Guawa.*;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
@@ -179,7 +177,7 @@ public class GuawaTest {
 
     @Test
     public void groupBy() throws Exception {
-        Map<String, Collection<Person>> expectedGroup = new HashMap() {
+        Map<String, Collection<Person>> expectedGroup = new HashMap<String, Collection<Person>>() {
             {
                 put("A", _l(new Person("A", "female")));
                 put("B", _l(new Person("B", "male"), new Person("B", "female")));
