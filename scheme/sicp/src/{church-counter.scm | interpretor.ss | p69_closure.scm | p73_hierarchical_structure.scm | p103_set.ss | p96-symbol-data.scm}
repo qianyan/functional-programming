@@ -1,5 +1,0 @@
-(import (rough-draft unit-test)
-  (rough-draft console-test-runner))
-
-(load "../src/p69_closure.scm")
-(load "../src/p96-symbol-data.scm")
