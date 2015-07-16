@@ -16,6 +16,7 @@
 
 ((fn [num lst] (for [x lst] (dotimes [n num] (println x)))) 3 [1, 2, 3])
 
+;;; filter
 (fn [delim ls]
   (loop [result [] lst ls]
     (if (empty? lst) result
