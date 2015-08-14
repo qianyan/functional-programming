@@ -162,7 +162,7 @@ public class GuawaTest {
     @Test
     public void sorted_index() throws Exception {
         assertThat(GuawaArray.sortedIndex(_a(1, 2, 5, 6), 5), is(2));
-        assertThat(GuawaArray.sortedIndex(_a(1, 2, 5, 6), 4), is(2));
+        assertThat(GuawaArray.sortedIndex(_a(1, 2, 5, 6), -1), is(0));
     }
 
     @Test
